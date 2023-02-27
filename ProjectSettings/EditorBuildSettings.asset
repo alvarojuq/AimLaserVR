@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TTTS_MainMenu.unity
+    guid: 4e74923ec125d4b419b67122a959a20b
+  - enabled: 1
+    path: Assets/Scenes/TTTS_HiFi_Sim.unity
+    guid: fde29698af2c43545a56c5308b36a363
+  - enabled: 1
+    path: Assets/Scenes/TTTS_LoFi_Sim.unity
+    guid: 02d53e78c8ccc0447b989337972ff2d4
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 5b8d61389f400cc4db886fd7e65b6854,
+      type: 2}
+    Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 071c2e113af7490428b1de5ef3033f65,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 282abb9257340a64190c5b1f0b865853,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 8797e17bb2f9e044195cdec00e2bc6ea,
+      type: 2}
