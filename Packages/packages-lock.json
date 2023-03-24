@@ -16,12 +16,6 @@
       "source": "local-tarball",
       "dependencies": {}
     },
-    "com.microsoft.mixedreality.movingplatform": {
-      "version": "file:MixedReality/com.microsoft.mixedreality.movingplatform-0.0.3.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {}
-    },
     "com.microsoft.mixedreality.openxr": {
       "version": "file:MixedReality/com.microsoft.mixedreality.openxr-1.5.0.tgz",
       "depth": 0,
