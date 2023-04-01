@@ -9,6 +9,7 @@ TagManager:
   - UI
   - Tissue
   - Target
+  - Decal
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using HP.Omnicept.Messaging.Messages;
 using UnityEngine;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,9 @@ public class FileWriter : MonoBehaviour
     public GameObject rollCam;
     private GameObject laser;
     private bool handLaser;
-    private GameObject eyetracker;
-    private GameObject heartrate;
+    private Vector2 rightGazeTarget;
+    private Vector2 leftGazeTarget;
+    private string heartRead;
     StreamWriter writer = null;
 
     private void OnEnable()
@@ -51,8 +53,8 @@ public class FileWriter : MonoBehaviour
         VRLaser laserScript = laser.GetComponent<VRLaser>();
         bool finalCheck = (bool)laserScript.isOn && handLaser;
 
-        eyetracker = GameObject.Find("Eyes");
-        heartrate = GameObject.Find("HRText");
+        //eyetracker = GameObject.Find("Eyes");
+        //heartrate = GameObject.Find("HRText");
 
             //This is writing the line of the type, name, damage... etc... (I set these)
         writer.WriteLine("PlaceHolder_Timestamp");
@@ -63,6 +65,11 @@ public class FileWriter : MonoBehaviour
                 "," + position.transform.rotation.y.ToString() +
                 "," + position.transform.rotation.z.ToString() +
                 "," + rollCam.transform.rotation.z.ToString() +
+                "," + heartRead +
+                "," + rightGazeTarget.x.ToString() +
+                "," + rightGazeTarget.y.ToString() +
+                "," + leftGazeTarget.x.ToString() +
+                "," + leftGazeTarget.y.ToString() +
                 "," + finalCheck);
        //        "," + laserScript.isOn.ToString());
 
@@ -70,6 +77,24 @@ public class FileWriter : MonoBehaviour
 
 
     }
+    private void OnEyeTracking(EyeTracking eyeTracking)
+    {
+        if (eyeTracking != null)
+        {
+            rightGazeTarget = new Vector2(eyeTracking.CombinedGaze.X, -eyeTracking.CombinedGaze.Y);
+            leftGazeTarget = new Vector2(eyeTracking.CombinedGaze.X, -eyeTracking.CombinedGaze.Y);
+            //rightPupilSizeTarget = eyeTracking.RightEye.PupilDilation / 10f;
+            //leftPupilSizeTarget = eyeTracking.LeftEye.PupilDilation / 10f;
+        }
+    }
+    private void OnHeartRate(HeartRate hr)
+    {
+        if (hr != null)
+        {
+            heartRead = hr.Rate.ToString();
+        }
+    }
+
     public IEnumerator TrigCheck()
     {
         handLaser = true;

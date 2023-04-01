@@ -7,6 +7,7 @@ public class TargetManager : MonoBehaviour
     public GameObject board1;
     public GameObject board2;
     public GameObject board3;
+    public GameObject decal;
     ProgressTrack finCheck;
 
     // Start is called before the first frame update
@@ -82,6 +83,11 @@ public class TargetManager : MonoBehaviour
             board1.SetActive(false);
             board2.SetActive(false);
             board3.SetActive(true);
+        }
+        GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Decal");
+        foreach (GameObject obj in allObjects)
+        {
+                Destroy(obj);
         }
     }
 
