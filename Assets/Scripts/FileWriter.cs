@@ -62,9 +62,9 @@ public class FileWriter : MonoBehaviour
             writer.WriteLine(position.transform.position.x.ToString() +
                 "," + position.transform.position.y.ToString() +
                 "," + position.transform.position.z.ToString() +
+                "," + position.transform.rotation.x.ToString() +
                 "," + position.transform.rotation.y.ToString() +
                 "," + position.transform.rotation.z.ToString() +
-                "," + rollCam.transform.rotation.z.ToString() +
                 "," + heartRead +
                 "," + rightGazeTarget.x.ToString() +
                 "," + rightGazeTarget.y.ToString() +
