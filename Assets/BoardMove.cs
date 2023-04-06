@@ -50,6 +50,8 @@ public class BoardMove : MonoBehaviour
                 transform.Translate(p);
             }
         }
+
+        //ExecuteEvents.Execute(buttonToFire.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
     }
 
     private Vector3 GetBaseInput()

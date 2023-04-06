@@ -57,7 +57,7 @@ namespace Microsoft.MixedReality.Toolkit.Examples.Demos
 
         public void Spawn2 (BaseInputEventData eventData)
         {
-            //activeLaser = false;
+            //EventSystem.ExecuteEvents.Execute(buttonToFire.gameObject, new BaseEventData(EventSystem.current), ExecuteEvents.submitHandler);
         }
     }
     
