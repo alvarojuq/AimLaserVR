@@ -57,9 +57,11 @@ public class FileWriter : MonoBehaviour
         //heartrate = GameObject.Find("HRText");
 
             //This is writing the line of the type, name, damage... etc... (I set these)
-        writer.WriteLine("PlaceHolder_Timestamp");
+        //writer.WriteLine("PlaceHolder_Timestamp");
             //This loops through everything in the inventory and sets the file to these.
-            writer.WriteLine(position.transform.position.x.ToString() +
+            writer.WriteLine(
+                Time.realtimeSinceStartup.ToString() +
+                "," + position.transform.position.x.ToString() +
                 "," + position.transform.position.y.ToString() +
                 "," + position.transform.position.z.ToString() +
                 "," + position.transform.rotation.x.ToString() +
@@ -70,7 +72,8 @@ public class FileWriter : MonoBehaviour
                 "," + rightGazeTarget.y.ToString() +
                 "," + leftGazeTarget.x.ToString() +
                 "," + leftGazeTarget.y.ToString() +
-                "," + finalCheck);
+                "," + finalCheck
+                );
        //        "," + laserScript.isOn.ToString());
 
             writer.Flush();
