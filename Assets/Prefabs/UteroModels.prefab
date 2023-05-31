@@ -1192,9 +1192,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
 --- !u!64 &5725814273019031776
 MeshCollider:
@@ -1206,9 +1206,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
 --- !u!64 &2662298301180275112
 MeshCollider:
@@ -1220,9 +1220,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
 --- !u!1001 &1909245530344834544
 PrefabInstance:
@@ -1234,6 +1234,10 @@ PrefabInstance:
     - target: {fileID: 100256, guid: 39956eb9f0b489a4e9320f74c08e3162, type: 3}
       propertyPath: m_Name
       value: TTTS_Fetus_Models_v002
+      objectReference: {fileID: 0}
+    - target: {fileID: 400256, guid: 39956eb9f0b489a4e9320f74c08e3162, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400256, guid: 39956eb9f0b489a4e9320f74c08e3162, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1248,6 +1252,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400256, guid: 39956eb9f0b489a4e9320f74c08e3162, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400256, guid: 39956eb9f0b489a4e9320f74c08e3162, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1257,14 +1265,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400256, guid: 39956eb9f0b489a4e9320f74c08e3162, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400256, guid: 39956eb9f0b489a4e9320f74c08e3162, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400256, guid: 39956eb9f0b489a4e9320f74c08e3162, type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400256, guid: 39956eb9f0b489a4e9320f74c08e3162, type: 3}
@@ -1491,6 +1491,10 @@ PrefabInstance:
       value: TTTS_CombinedUterineModels_v003
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -1503,6 +1507,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1513,14 +1521,6 @@ PrefabInstance:
     - target: {fileID: 400004, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: becb2b53da2131649a2effa773c63a9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

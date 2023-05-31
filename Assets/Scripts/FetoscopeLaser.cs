@@ -15,7 +15,7 @@ public class FetoscopeLaser : MonoBehaviour
     //public variables that will correspond to the laser power, in Watts, the range of the laser, which will scale with power, and the fire rate 
     //fire rate is controlled to avoid the accumulation of a massive number of decals, even though they are resource unintensive 
     //public float laserRange = 7f;
-    public float laserRate = 15f;
+    public float laserRate = 10f;
 
     //a private variable that works with the laserRate to determine when it can be fired again, and thus when the ablation decal is placed again
     private float nextTimeToFire = 0f;
@@ -43,6 +43,7 @@ public class FetoscopeLaser : MonoBehaviour
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && UserMenu_Simulation.SimIsPaused.Equals(false))
         {
             nextTimeToFire = Time.time + 1f / laserRate;
+            //Debug.Log("mousedown");
             LaserFire();
         }
 
@@ -106,7 +107,7 @@ public class FetoscopeLaser : MonoBehaviour
     void LaserFire()
     {
         //this calls the Laser Power value from the Slider script, and applies it as the range of the ray cast
-        float laserRange = GameObject.FindGameObjectWithTag("UI").GetComponent<SliderKeyControlScript>().LaserPower;
+        float laserRange = 20; //GameObject.FindGameObjectWithTag("UI").GetComponent<SliderKeyControlScript>().LaserPower;
 
         RaycastHit hit;
         //the code below says that if our laser hits something, something then happens
@@ -129,11 +130,13 @@ public class FetoscopeLaser : MonoBehaviour
             GameObject temp = Instantiate(ablationPrefab, hit.point, Quaternion.LookRotation(hit.normal));
             //this allows us to instantiate the decal onto the parent of the object hit, ensuring the decals move with any colliders and animations 
             temp.transform.parent = theObjectHit.transform;
-
+            CheckHit hitUp = theObjectHit.GetComponent<CheckHit>();
+            hitUp.progress++;
+            Debug.Log("Shooting!");
 
             //if the laser hits anything but the placental surface, the damage flash animation appears
             //not the most elegant solution and doesn't take into account hitting non-target points on the placenta, but good for now!
-            bool isHit = false;
+           /* bool isHit = false;
 
             for (int num = 0; num <= artery.Length; num++)
             {
@@ -154,7 +157,7 @@ public class FetoscopeLaser : MonoBehaviour
             {
                 Debug.Log("Nothing hit");
                 StartCoroutine(DamageFlash());
-            }
+            }*/
         }
     }
 
