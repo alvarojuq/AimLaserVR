@@ -131,7 +131,7 @@ public class FetoscopeLaser : MonoBehaviour
             //this allows us to instantiate the decal onto the parent of the object hit, ensuring the decals move with any colliders and animations 
             temp.transform.parent = theObjectHit.transform;
             CheckHit hitUp = theObjectHit.GetComponent<CheckHit>();
-            hitUp.progress++;
+            //hitUp.progress++;
             Debug.Log("Shooting!");
 
             //if the laser hits anything but the placental surface, the damage flash animation appears

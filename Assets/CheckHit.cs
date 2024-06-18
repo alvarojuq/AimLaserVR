@@ -28,7 +28,7 @@ public class CheckHit : MonoBehaviour
         rend.material.Lerp(material1, material2, (progress / 100));
         //Debug.Log(this.name + " " + progress);
 
-        if (progress >= 100)
+        if (progress >= 50)
         {
             done = true;
         }

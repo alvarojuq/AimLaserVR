@@ -5,12 +5,12 @@ using UnityEngine;
 using System.Linq;
 using System.Text;
 using System.IO;
+using HP.Glia.Examples.Display;
 
-
-public class FileWriter : MonoBehaviour
+public class FileWriter : UGUIBaseDisplay
 {
     public GameObject position;
-    //public GameObject rotation;
+    public GameObject rotation;
     public GameObject rollCam;
     private GameObject laser;
     private bool handLaser;
@@ -21,8 +21,11 @@ public class FileWriter : MonoBehaviour
 
     private void OnEnable()
     {
+        gliaBehaviour.OnEyeTracking.AddListener(OnEyeTracking);
+        gliaBehaviour.OnHeartRate.AddListener(OnHeartRate);
+        //gliaBehaviour.OnHeartRateVariabiility.AddListener(OnHeartRate);
         position = GameObject.Find("Main Camera");
-        //rotation = GameObject.Find("Main Camera");
+        rotation = GameObject.Find("Main Camera");
         //rollCam = GameObject.Find("AR_Camera");      
 
         string filePath = getPath();
@@ -49,9 +52,9 @@ public class FileWriter : MonoBehaviour
         rotation = GameObject.Find("Fetoscope_Pivot");
         FetoscopeRotation rotScript = rotation.GetComponent<FetoscopeRotation>();
         */
-        laser = GameObject.Find("Main Camera");
-        VRLaser laserScript = laser.GetComponent<VRLaser>();
-        bool finalCheck = (bool)laserScript.isOn && handLaser;
+        //laser = GameObject.Find("Main Camera");
+        //VRLaser laserScript = laser.GetComponent<VRLaser>();
+        //bool finalCheck = (bool)laserScript.isOn && handLaser;
 
         //eyetracker = GameObject.Find("Eyes");
         //heartrate = GameObject.Find("HRText");
@@ -71,8 +74,8 @@ public class FileWriter : MonoBehaviour
                 "," + rightGazeTarget.x.ToString() +
                 "," + rightGazeTarget.y.ToString() +
                 "," + leftGazeTarget.x.ToString() +
-                "," + leftGazeTarget.y.ToString() +
-                "," + finalCheck
+                "," + leftGazeTarget.y.ToString() //+
+                //"," + finalCheck
                 );
        //        "," + laserScript.isOn.ToString());
 
