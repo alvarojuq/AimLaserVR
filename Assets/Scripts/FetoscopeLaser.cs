@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI; //nedded to access the UI elements
 
 public class FetoscopeLaser : MonoBehaviour
@@ -30,7 +32,6 @@ public class FetoscopeLaser : MonoBehaviour
     public GameObject[] artery;
 
     public bool isOn = false;
-
 
     // Update is called once per frame
     void Update()
@@ -62,7 +63,6 @@ public class FetoscopeLaser : MonoBehaviour
             LaserFire();
         }
 
-
         //The code below plays the laser tone sound as long as the fire buttons are held down
         //the GetKeyUp input means that upon the key being release, the sound is cut and stops playing
         if (Input.GetButtonDown("Fire1") && UserMenu_Simulation.SimIsPaused.Equals(false))
@@ -76,33 +76,32 @@ public class FetoscopeLaser : MonoBehaviour
             LaserTone.Stop();
             isOn = false;
         }
-
         if (Input.GetButtonDown("Fire2") && UserMenu_Simulation.SimIsPaused.Equals(false))
         {
             LaserTone.Play();
             isOn = true;
         }
-
         if (Input.GetButtonUp("Fire2") && UserMenu_Simulation.SimIsPaused.Equals(false))
         {
             LaserTone.Stop();
             isOn = false;
         }
 
-        if ((serialScript.laserOn == true) && UserMenu_Simulation.SimIsPaused.Equals(false))
+        if (serialScript.connected == true)
         {
-            LaserTone.Play();
-            isOn = true;
-        }
+            if ((serialScript.laserOn == true) && UserMenu_Simulation.SimIsPaused.Equals(false))
+            {
+                LaserTone.Play();
+                isOn = true;
+            }
 
-        if ((serialScript.laserOn == false) && UserMenu_Simulation.SimIsPaused.Equals(false))
-        {
-            LaserTone.Stop();
-            isOn = false;
+            if ((serialScript.laserOn == false) && UserMenu_Simulation.SimIsPaused.Equals(false))
+            {
+                LaserTone.Stop();
+                isOn = false;
+            }
         }
-
     }
-
 
     void LaserFire()
     {
@@ -117,7 +116,7 @@ public class FetoscopeLaser : MonoBehaviour
         {
             //Debug.Log(hit.transform.name);
             //Debug.DrawRay(fetoscopeCamera.transform.position, fetoscopeCamera.transform.forward * laserRange, Color.green,1.0f, true);
-            
+
             //this sets any object hit as a GameObject that can be refered to 
             GameObject theObjectHit = hit.collider.gameObject;
 
@@ -130,34 +129,37 @@ public class FetoscopeLaser : MonoBehaviour
             GameObject temp = Instantiate(ablationPrefab, hit.point, Quaternion.LookRotation(hit.normal));
             //this allows us to instantiate the decal onto the parent of the object hit, ensuring the decals move with any colliders and animations 
             temp.transform.parent = theObjectHit.transform;
-            CheckHit hitUp = theObjectHit.GetComponent<CheckHit>();
-            //hitUp.progress++;
+            if (theObjectHit.GetComponent<CheckHit>())
+            {
+                CheckHit hitUp = theObjectHit.GetComponent<CheckHit>();
+                hitUp.progress++;
+            }
             Debug.Log("Shooting!");
 
             //if the laser hits anything but the placental surface, the damage flash animation appears
             //not the most elegant solution and doesn't take into account hitting non-target points on the placenta, but good for now!
-           /* bool isHit = false;
+            /* bool isHit = false;
 
-            for (int num = 0; num <= artery.Length; num++)
-            {
-                if (theObjectHit == (artery[num]))
-                {
-                    Debug.Log("Target hit: " + num);
-                    isHit = true;
-                    break;
-                }
-                else if (theObjectHit == placenta)
-                {
-                    Debug.Log("Placenta hit");
-                    isHit = true;
-                    break;
-                }
-            }
-            if (isHit == false)
-            {
-                Debug.Log("Nothing hit");
-                StartCoroutine(DamageFlash());
-            }*/
+             for (int num = 0; num <= artery.Length; num++)
+             {
+                 if (theObjectHit == (artery[num]))
+                 {
+                     Debug.Log("Target hit: " + num);
+                     isHit = true;
+                     break;
+                 }
+                 else if (theObjectHit == placenta)
+                 {
+                     Debug.Log("Placenta hit");
+                     isHit = true;
+                     break;
+                 }
+             }
+             if (isHit == false)
+             {
+                 Debug.Log("Nothing hit");
+                 StartCoroutine(DamageFlash());
+             }*/
         }
     }
 

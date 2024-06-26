@@ -1,10 +1,10 @@
-﻿using Microsoft.MixedReality.Toolkit.Input;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI; //allows access to UI elements 
 
-public class FetoscopeRotation : MonoBehaviour, IMixedRealityInputHandler
+public class FetoscopeRotation : MonoBehaviour
 {
     private GameObject fetoCam;
     public GameObject serial;
@@ -14,7 +14,8 @@ public class FetoscopeRotation : MonoBehaviour, IMixedRealityInputHandler
     float yaw = 65f;
     float pitch = 50f;
     float roll = 0.0f;
-    public MixedRealityInputAction bPress;
+
+    public InputAction switchModeAction; 
     //a public variable for the mouse sensitivity
     public float mouseSensitivity;
     //a public variable for the controller sensitivity
@@ -29,29 +30,26 @@ public class FetoscopeRotation : MonoBehaviour, IMixedRealityInputHandler
         
         cmode = 0;
     }
-    public void OnInputDown(InputEventData eventData)
+    private void OnEnable()
     {
-        if (eventData.MixedRealityInputAction == bPress)
-        {
-            Debug.Log("Control Mode Switched");
-            cmode++;
-            if (cmode > 3)
-            {
-                cmode = 0;
-            }
-        }
+        // Enable the InputAction
+        switchModeAction.Enable();
+        switchModeAction.performed += OnSwitchModePerformed;
     }
 
-    public void OnInputUp(InputEventData eventData)
+    private void OnDisable()
     {
-        if (eventData.MixedRealityInputAction == bPress)
+        // Disable the InputAction
+        switchModeAction.Disable();
+        switchModeAction.performed -= OnSwitchModePerformed;
+    }
+    private void OnSwitchModePerformed(InputAction.CallbackContext context)
+    {
+        Debug.Log("Control Mode Switched");
+        cmode++;
+        if (cmode > 3)
         {
-            Debug.Log("Control Mode Switched");
-            cmode++;
-            if (cmode > 3)
-            {
-                cmode = 0;
-            }
+            cmode = 0;
         }
     }
 
@@ -88,7 +86,7 @@ public class FetoscopeRotation : MonoBehaviour, IMixedRealityInputHandler
     void RotatePivot()
     {
 
-        if (cmode == 0)
+        if (cmode == 0) // keyboard
         {
             yaw -= Input.GetAxis("Mouse X") * mouseSensitivity;
             pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
@@ -99,7 +97,7 @@ public class FetoscopeRotation : MonoBehaviour, IMixedRealityInputHandler
 
             transform.eulerAngles = new Vector3(0.0f, yaw, pitch);
         }
-        else if (cmode == 1)
+        else if (cmode == 1) // gamepad
         {
             //CONTROLLERCODE
             //Get the current orientation of the game controller
@@ -107,7 +105,7 @@ public class FetoscopeRotation : MonoBehaviour, IMixedRealityInputHandler
             //In this case the range for each is different
             //the Yaw, or horizontal anlge can go from (-65, 65) degrees
             //the Pitch, or vertical angle can go from (-50, 50) degrees
-            float angle_horiz = 65 + (65 * -Input.GetAxis("PS3 RStick X"));
+            float angle_horiz = 65 + (70 * -Input.GetAxis("PS3 RStick X"));
             float angle_vert = 50 + (40 * -Input.GetAxis("PS3 RStick Y"));
 
             //Calculate the quaternion for the angles
@@ -117,7 +115,7 @@ public class FetoscopeRotation : MonoBehaviour, IMixedRealityInputHandler
             transform.localRotation = qh;
             //CONTROLLERCODE ENDS
         }
-        else if (cmode == 2)
+        else if (cmode == 2) // vr controller
         {
             joystick = GameObject.Find("StickScope");
             ReturnPosition joyPos = joystick.GetComponent<ReturnPosition>();
@@ -130,7 +128,7 @@ public class FetoscopeRotation : MonoBehaviour, IMixedRealityInputHandler
 
             transform.eulerAngles = new Vector3(0.0f, yaw, pitch);
         }
-        else if (cmode == 3)
+        else if (cmode == 3) // fetoscop controller
         {
             serial = GameObject.Find("SerialController");
             SerialController serialScript = serial.GetComponent<SerialController>();

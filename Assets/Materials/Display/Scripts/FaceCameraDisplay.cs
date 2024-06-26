@@ -21,7 +21,6 @@ namespace HP.Glia.Examples.Display
             }
         }
 
-
         public override Texture mainTexture
         {
             get

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //nedded to access the UI elements
-using Microsoft.MixedReality.Toolkit.Input;
 
 public class VRLaser : MonoBehaviour
 {
@@ -112,8 +111,6 @@ public class VRLaser : MonoBehaviour
         //the code below says that if our laser hits something, something then happens
         //we need to access the transform of the camera to shot from it, and ensure it is the forward direction
         //the laser range at the end ensure that we only get the effect if it's within our specified range
-
-        IMixedRealityPointer myPoint;
 
         if (Physics.Raycast(fetoscopeCamera.transform.position, fetoscopeCamera.transform.forward, out hit, laserRange))
 

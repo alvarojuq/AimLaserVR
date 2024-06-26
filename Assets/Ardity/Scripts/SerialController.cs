@@ -38,6 +38,7 @@ public class SerialController : MonoBehaviour
     public float rotZ = 0;
     public float localPos = 0;
     public bool laserOn;
+    public bool connected;
 
     /*public float XRot
     {
@@ -165,11 +166,19 @@ public class SerialController : MonoBehaviour
 
         // Check if the message is plain data or a connect/disconnect event.
         if (ReferenceEquals(message, SERIAL_DEVICE_CONNECTED))
+        {
             messageListener.SendMessage("OnConnectionEvent", true);
+            connected = true;
+        }
         else if (ReferenceEquals(message, SERIAL_DEVICE_DISCONNECTED))
+        {
             messageListener.SendMessage("OnConnectionEvent", false);
+            connected = false;
+        }
         else
+        {
             messageListener.SendMessage("OnMessageArrived", message);
+        }
 
         //Debug.Log("Message arrived: " + message);
         string phrase = message;

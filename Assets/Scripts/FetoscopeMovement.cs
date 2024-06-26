@@ -1,10 +1,9 @@
-﻿using Microsoft.MixedReality.Toolkit.Input;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI; //allows access to UI elements 
+﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class FetoscopeMovement : MonoBehaviour, IMixedRealityInputHandler<Vector2>
+public class FetoscopeMovement : MonoBehaviour
 {
     public GameObject refObj;
     public GameObject serial;
@@ -12,7 +11,6 @@ public class FetoscopeMovement : MonoBehaviour, IMixedRealityInputHandler<Vector
     public CharacterController fetoscopeCC;
     Rigidbody m_Rigidbody;
 
-    public MixedRealityInputAction moveAction;
     //variable to set the speed of the fetoscope moving in and out using the direction keys
     public float fetoscopeDirectionSpeed;
     //variable to set the speed of the fetoscope moving in and out using the scroll wheel
@@ -34,32 +32,33 @@ public class FetoscopeMovement : MonoBehaviour, IMixedRealityInputHandler<Vector
 
     GameObject link;
 
+    // Input actions
+    public InputAction moveAction;
+    public InputAction scrollAction;
+
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<CharacterController>();
         m_Rigidbody = GetComponent<Rigidbody>();
         //fetoscopeCC.transform.localPosition.y = -15;
-    }
 
-   
+        // Enable the input actions
+        moveAction.Enable();
+        scrollAction.Enable();
+    }
+    private void OnDestroy()
+    {
+        // Disable the input actions
+        moveAction.Disable();
+        scrollAction.Disable();
+    }
     // Update is called once per frame
     void Update()
     {
         //calls the methods to move the fetoscope
         MoveFetoscope();
     }
-
-    public void OnInputChanged(InputEventData<Vector2> eventData)
-    {
-        if (eventData.MixedRealityInputAction == moveAction)
-        {
-            Vector3 localDelta = (Vector3)eventData.InputData;
-            VRScrollDirection = (transform.forward * (float) localDelta.y * fetoscopePS3Speed);
-            fetoscopeCC.Move(VRScrollDirection * Time.deltaTime);
-        }
-    }
-
     void MoveFetoscope()
     {
 
@@ -112,6 +111,7 @@ public class FetoscopeMovement : MonoBehaviour, IMixedRealityInputHandler<Vector
             }
             else if (fRot.cmode == 1)
             {
+                //PS3moveDirection = (transform.forward * Input.GetAxis("PS3 LStick Y") * fetoscopePS3Speed);
                 PS3moveDirection = (transform.forward * Input.GetAxis("Mouse Y") * fetoscopePS3Speed);
 
                 fetoscopeCC.Move(PS3moveDirection * Time.deltaTime);
