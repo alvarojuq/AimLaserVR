@@ -13,7 +13,7 @@ public class FileWriter : UGUIBaseDisplay
     public GameObject rotation;
     public GameObject rollCam;
     private GameObject laser;
-    private bool handLaser;
+   //private bool handLaser;
     private Vector2 rightGazeTarget;
     private Vector2 leftGazeTarget;
     private string heartRead;
@@ -101,12 +101,12 @@ public class FileWriter : UGUIBaseDisplay
         }
     }
 
-    public IEnumerator TrigCheck()
+    /*public IEnumerator TrigCheck()
     {
         handLaser = true;
         yield return new WaitForSeconds(0.2f);
         handLaser = false;
-    }
+    }*/
 
     private string getPath()
     {

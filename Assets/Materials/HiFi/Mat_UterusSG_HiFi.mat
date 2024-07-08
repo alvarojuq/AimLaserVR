@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_UterusSG_HiFi
-  m_Shader: {fileID: 4800000, guid: ebd432189c20b204db70d412d700ee6b, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 897839ec31c6ac4418001ce67dd5cc6b,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -219,10 +220,13 @@ Material:
     - _AlphaSrcBlend: 1
     - _AlphaToMask: 0
     - _AlphaToMaskInspectorValue: 0
+    - _Angle_Offset_Cell_Randomness: 100
     - _Anisotropy: 0
     - _BlendMode: 0
     - _BumpScale: 1
+    - _Cell_Density: 1500
     - _CoatMask: 0
+    - _Coat_Smoothness: 0
     - _ConservativeDepthOffsetEnable: 0
     - _CullMode: 2
     - _CullModeForward: 2
@@ -289,6 +293,7 @@ Material:
     - _Mode: 0
     - _NormalMapSpace: 0
     - _NormalScale: 1
+    - _Normal_Strength: 5
     - _OcclusionStrength: 1
     - _OpaqueCullMode: 2
     - _PPDLodThreshold: 5
@@ -305,9 +310,11 @@ Material:
     - _RenderQueueType: 1
     - _RequireSplitLighting: 1
     - _SSRefractionProjectionModel: 0
+    - _SS_Multiplayer: 1
+    - _SS_Thickness: 0.6
     - _ShiverDirectionality: 0.5
     - _ShiverDrag: 0.2
-    - _Smoothness: 0.5
+    - _Smoothness: 0.6
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
     - _SmoothnessTextureChannel: 0
@@ -359,6 +366,8 @@ Material:
     - _BaseColor: {r: 1, g: 0.517, b: 0.517, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 0.5169999, b: 0.5169999, a: 1}
+    - _Color_1: {r: 1, g: 0.25098038, b: 0.25098038, a: 1}
+    - _Color_2: {r: 0.69803923, g: 0.454902, b: 0.454902, a: 1}
     - _DiffusionProfileAsset: {r: -2.0646998e+34, g: -2.3436925e-26, b: -6.158456e-18,
         a: 2.2386603e+17}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}

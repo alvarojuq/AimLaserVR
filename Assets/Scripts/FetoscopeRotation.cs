@@ -15,35 +15,21 @@ public class FetoscopeRotation : MonoBehaviour
     float pitch = 50f;
     float roll = 0.0f;
 
-    public InputAction switchModeAction; 
     //a public variable for the mouse sensitivity
     public float mouseSensitivity;
     //a public variable for the controller sensitivity
     public float controllerSensitivity;
     public float fetoscopeTurnSpeed;
     private Vector3 moveDirection = Vector3.zero;
-    //a public reference to the Control Toggle in the settings menu
-    public Toggle ControlToggle;
+
     private void Start()
     {
         fetoCam = GameObject.Find("Fetoscope_Camera");
         
         cmode = 0;
     }
-    private void OnEnable()
-    {
-        // Enable the InputAction
-        switchModeAction.Enable();
-        switchModeAction.performed += OnSwitchModePerformed;
-    }
 
-    private void OnDisable()
-    {
-        // Disable the InputAction
-        switchModeAction.Disable();
-        switchModeAction.performed -= OnSwitchModePerformed;
-    }
-    private void OnSwitchModePerformed(InputAction.CallbackContext context)
+    public void OnSwitchInputMode()
     {
         Debug.Log("Control Mode Switched");
         cmode++;
@@ -52,19 +38,8 @@ public class FetoscopeRotation : MonoBehaviour
             cmode = 0;
         }
     }
-
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Debug.Log("Control Mode Switched");
-            cmode++;
-            if (cmode > 3)
-            {
-                cmode = 0;
-            }
-        }
-
         if (UserMenu_Simulation.SimIsPaused)
         {
             //this leaves the cursor as is, just like normal

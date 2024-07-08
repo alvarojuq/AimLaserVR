@@ -32,8 +32,8 @@ public class UserMenu_Simulation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //a statment to make the esc key pause and resume the game 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*//a statment to make the esc key pause and resume the game 
+        if (PlayerControls.DefaultActions.ReferenceEquals()
         {
             if (SimIsPaused)
             {
@@ -43,9 +43,20 @@ public class UserMenu_Simulation : MonoBehaviour
             {
                 PauseSim();
             }
+        }*/
+    }
+    public void OnPause()
+    {
+        //a statment to make the pause action key pause and resume the game 
+        if (SimIsPaused)
+        {
+            ResumeSim();
+        }
+        else
+        {
+            PauseSim();
         }
     }
-
 
     //a method to pause the simulator
     public void ResumeSim()

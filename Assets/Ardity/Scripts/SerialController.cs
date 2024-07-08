@@ -31,7 +31,7 @@ public class SerialController : MonoBehaviour
     public GameObject refObj;
     Vector3 tempPos = new Vector3(0, 0, 0);
     Quaternion tempRot = Quaternion.Euler(0, 0, 0);
-    float speed = 500;
+    //float speed = 500;
     float[] posQueue = new float[6];
     public float rotX = 0;
     public float rotY = 0;

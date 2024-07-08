@@ -6,15 +6,15 @@ LightingSettings:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TTTS_HiFi_SimSettings
+  m_Name: TTTS_MainMenuSettings
   serializedVersion: 6
   m_GIWorkflowMode: 0
-  m_EnableBakedLightmaps: 0
+  m_EnableBakedLightmaps: 1
   m_EnableRealtimeLightmaps: 1
   m_RealtimeEnvironmentLighting: 1
   m_BounceScale: 1
-  m_AlbedoBoost: 1.33
-  m_IndirectOutputScale: 3.01
+  m_AlbedoBoost: 1
+  m_IndirectOutputScale: 1
   m_UsingShadowmask: 1
   m_BakeBackend: 1
   m_LightmapMaxSize: 1024

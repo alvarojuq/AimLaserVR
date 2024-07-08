@@ -31,7 +31,7 @@ namespace HP.Glia.Examples.Display
 
         private Texture2D cameraTexture;
 
-        public void Start()
+        new public void Start()
         {
             base.Start();
 

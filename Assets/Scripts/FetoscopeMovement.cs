@@ -35,6 +35,7 @@ public class FetoscopeMovement : MonoBehaviour
     // Input actions
     public InputAction moveAction;
     public InputAction scrollAction;
+    private InputAction vrInputActions;
 
     // Start is called before the first frame update
     void Start()
@@ -76,7 +77,7 @@ public class FetoscopeMovement : MonoBehaviour
         else
         {
 
-            if (fRot.cmode == 0)
+            if (fRot.cmode == 0) // mouse and keyboard
             {
                 //with the vector3 variable moveDirection, we are setting it equal to the forward direction of the fetoscope controller, based on the arrow key input and multipled by the fetoscope direction speed
                 moveDirection = (transform.forward * Input.GetAxis("Vertical") * fetoscopeDirectionSpeed);
@@ -109,20 +110,23 @@ public class FetoscopeMovement : MonoBehaviour
                     fetoscopeCC.Move(moveDirection * Time.deltaTime);
                 }
             }
-            else if (fRot.cmode == 1)
-            {
-                //PS3moveDirection = (transform.forward * Input.GetAxis("PS3 LStick Y") * fetoscopePS3Speed);
-                PS3moveDirection = (transform.forward * Input.GetAxis("Mouse Y") * fetoscopePS3Speed);
-
-                fetoscopeCC.Move(PS3moveDirection * Time.deltaTime);
-            }
-            else if (fRot.cmode == 2)
-            {
+            else if (fRot.cmode == 1) // gamepad
+            { 
+                PS3moveDirection = (transform.forward * Input.GetAxis("PS3 LStick Y") * fetoscopePS3Speed);
                 //PS3moveDirection = (transform.forward * Input.GetAxis("Mouse Y") * fetoscopePS3Speed);
-                //scrollDirection = (transform.forward * Input.GetAxis("PS3 RStick Y") * fetoscopePS3Speed);
-                fetoscopeCC.Move(VRScrollDirection * Time.deltaTime);
+
+                if(Mathf.Abs(Input.GetAxis("PS3 LStick Y")) > 0.05f)
+                    fetoscopeCC.Move(PS3moveDirection * Time.deltaTime);
             }
-            else if (fRot.cmode == 3)
+            else if (fRot.cmode == 2) // vr controllers
+            {
+                PS3moveDirection = (transform.forward * Input.GetAxis("PS3 LStick Y") * fetoscopePS3Speed);
+                //PS3moveDirection = (transform.forward * Input.GetAxis("Mouse Y") * fetoscopePS3Speed);
+
+                if (Mathf.Abs(Input.GetAxis("PS3 LStick Y")) > 0.05f)
+                    fetoscopeCC.Move(PS3moveDirection * Time.deltaTime);
+            }
+            else if (fRot.cmode == 3) // fetoscope
             {
                 serial = GameObject.Find("SerialController");
                 SerialController serialScript = serial.GetComponent<SerialController>();

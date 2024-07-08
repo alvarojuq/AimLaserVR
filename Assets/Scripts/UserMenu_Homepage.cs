@@ -14,12 +14,11 @@ public class UserMenu_Homepage : MonoBehaviour
     public GameObject mainMenu;
     public GameObject settingsMenu;
     public GameObject aboutMenu;
+    public GameObject mainButtons;
 
     //Gameobject for the esc icon
     public GameObject escDefault;
     public GameObject escActive;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -29,21 +28,16 @@ public class UserMenu_Homepage : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-
-    // Update is called once per frame
-    void Update()
+    public void OnPause()
     {
-        //a statment to make the esc key pause and resume the game 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        //a statment to make the pause action key pause and resume the game 
+        if (MenuIsOpen)
         {
-            if (MenuIsOpen)
-            {
-                CloseMenu();
-            }
-            else
-            {
-                OpenMenu();
-            }
+            CloseMenu();
+        }
+        else
+        {
+            OpenMenu();
         }
     }
 
@@ -52,6 +46,7 @@ public class UserMenu_Homepage : MonoBehaviour
     public void CloseMenu()
     {
         menuPanel.SetActive(false);
+        mainButtons.SetActive(true);
         mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
         aboutMenu.SetActive(false);
@@ -64,6 +59,7 @@ public class UserMenu_Homepage : MonoBehaviour
     //a method to resume the simulator 
     public void OpenMenu()
     {
+        mainButtons.SetActive(false);
         menuPanel.SetActive(true);
         escDefault.SetActive(false);
         escActive.SetActive(true);

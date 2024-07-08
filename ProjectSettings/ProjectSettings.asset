@@ -93,7 +93,7 @@ PlayerSettings:
   deferSystemGesturesMode: 0
   hideHomeButton: 0
   submitAnalytics: 1
-  usePlayerLog: 0
+  usePlayerLog: 1
   dedicatedServerOptimizations: 0
   bakeCollisionMeshes: 1
   forceSingleInstance: 1
@@ -149,6 +149,7 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 11400000, guid: 8b1603b11cac21c44ac4b3802bd11916, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -169,7 +170,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.BMC-AYDesign.TTTS-SurgicalSimulator
+    Standalone: com.BMC---AY-Design.TTTS---Surgical-Simulator
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -443,7 +444,7 @@ PlayerSettings:
     m_Automatic: 1
   - m_BuildTarget: WindowsStandaloneSupport
     m_APIs: 1200000002000000
-    m_Automatic: 0
+    m_Automatic: 1
   - m_BuildTarget: AndroidPlayer
     m_APIs: 0b00000008000000
     m_Automatic: 0
@@ -837,9 +838,14 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
-    Build: 1
+    Build: 0
     Collab: 1
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -859,11 +865,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: b3a09b81-d9f0-4d79-8f9b-b839981c09c4
+  cloudProjectId: fc651900-77d7-437c-ae61-b2b929d8d98c
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: New Unity Project
-  organizationId: ay-game-design
+  projectName: TTTS - Surgical Simulator
+  organizationId: colinchar
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

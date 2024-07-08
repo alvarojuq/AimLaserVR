@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI; //nedded to access the UI elements
 
 public class Breathing : MonoBehaviour
@@ -18,7 +19,6 @@ public class Breathing : MonoBehaviour
     //a public reference to the hold breath UI element
     public GameObject HoldBreathDefault;
     public GameObject HoldBreathActive;
-
 
     // Start is called before the first frame update
     void Start()
@@ -48,15 +48,15 @@ public class Breathing : MonoBehaviour
             HoldBreathDefault.SetActive(false);
             HoldBreathActive.SetActive(true);
         }
-
-        //if "H" is pressed, start the HoldBreath coroutine
-        //the && stops the user from being able to spam "H" and continuously have the mother hold their breath
-        if (Input.GetKeyDown(KeyCode.H) && isBreathing == true)
-        {
-            StartCoroutine(HoldBreath());
-        }
     }
 
+    public void OnHoldBreath()
+    {
+        //if "H" is pressed, start the HoldBreath coroutine
+        //the && stops the user from being able to spam "H" and continuously have the mother hold their breath
+        if (isBreathing == true && !UserMenu_Simulation.SimIsPaused)
+            StartCoroutine(HoldBreath());
+    }
 
     //a method to simulate maternal breathing patterns
     void BreathMovement()

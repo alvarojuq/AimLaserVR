@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Google.Protobuf.WellKnownTypes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.UI; //nedded to access the UI elements
 
 public class FetoscopeLaser : MonoBehaviour
@@ -28,78 +30,46 @@ public class FetoscopeLaser : MonoBehaviour
     //a public reference to the Damage Flash UI element that shows when an incorrect location is ablated
     public GameObject damageFlash;
 
-    public GameObject placenta;
-    public GameObject[] artery;
+    //Input Actions
+    [Header("Input Actions")]
+    public InputActionReference fireInput;
+    public InputAction xrFireInput;
 
-    public bool isOn = false;
+    private void OnEnable()
+    {
+        fireInput.action.Enable();
+        xrFireInput.Enable();
+    }
 
+    private void OnDisable()
+    {
+        fireInput.action.Disable();
+        xrFireInput.Disable();
+    }
     // Update is called once per frame
     void Update()
     {
         serial = GameObject.Find("SerialController");
-        SerialController serialScript = serial.GetComponent<SerialController>();
+        if(serial != null)
+        {
+            SerialController serialScript = serial.GetComponent<SerialController>();
+        }
 
         //an if statement to check if we are firing the fetoscope laser. Fire1 is a default Unity inout that corresponds to the left mouse button
         //The && UserMenu_Simulation.SimIsPause(false) ensures that the fire method isn't accidentally called when the sim is paused
-        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire && UserMenu_Simulation.SimIsPaused.Equals(false))
-        {
-            nextTimeToFire = Time.time + 1f / laserRate;
-            //Debug.Log("mousedown");
-            LaserFire();
-        }
 
-        //We're doing the same thing here, but adding a redundancy for the Space Bar as the fire button
-        //To do this the Input options within the Project Settings were altered
-        //Specifically, Fire2 was changed to correspond to the Space button
-        if (Input.GetButton("Fire2") && Time.time >= nextTimeToFire && UserMenu_Simulation.SimIsPaused.Equals(false))
+        if (!UserMenu_Simulation.SimIsPaused && (fireInput.action.IsPressed() || xrFireInput.IsPressed()))
         {
+            Debug.Log("test");
             nextTimeToFire = Time.time + 1f / laserRate;
             LaserFire();
-        }
 
-        if ((serialScript.laserOn == true) && Time.time >= nextTimeToFire && UserMenu_Simulation.SimIsPaused.Equals(false))
-        {
-            nextTimeToFire = Time.time + 1f / laserRate;
-            LaserFire();
-        }
-
-        //The code below plays the laser tone sound as long as the fire buttons are held down
-        //the GetKeyUp input means that upon the key being release, the sound is cut and stops playing
-        if (Input.GetButtonDown("Fire1") && UserMenu_Simulation.SimIsPaused.Equals(false))
-        {
-            LaserTone.Play();
-            isOn = true;
-        }
-
-        if (Input.GetButtonUp("Fire1") && UserMenu_Simulation.SimIsPaused.Equals(false))
-        {
-            LaserTone.Stop();
-            isOn = false;
-        }
-        if (Input.GetButtonDown("Fire2") && UserMenu_Simulation.SimIsPaused.Equals(false))
-        {
-            LaserTone.Play();
-            isOn = true;
-        }
-        if (Input.GetButtonUp("Fire2") && UserMenu_Simulation.SimIsPaused.Equals(false))
-        {
-            LaserTone.Stop();
-            isOn = false;
-        }
-
-        if (serialScript.connected == true)
-        {
-            if ((serialScript.laserOn == true) && UserMenu_Simulation.SimIsPaused.Equals(false))
-            {
+            if (!LaserTone.isPlaying)
                 LaserTone.Play();
-                isOn = true;
-            }
-
-            if ((serialScript.laserOn == false) && UserMenu_Simulation.SimIsPaused.Equals(false))
-            {
-                LaserTone.Stop();
-                isOn = false;
-            }
+        }
+        else
+        {
+            LaserTone.Stop();
         }
     }
 
@@ -137,29 +107,16 @@ public class FetoscopeLaser : MonoBehaviour
             Debug.Log("Shooting!");
 
             //if the laser hits anything but the placental surface, the damage flash animation appears
-            //not the most elegant solution and doesn't take into account hitting non-target points on the placenta, but good for now!
-            /* bool isHit = false;
 
-             for (int num = 0; num <= artery.Length; num++)
-             {
-                 if (theObjectHit == (artery[num]))
-                 {
-                     Debug.Log("Target hit: " + num);
-                     isHit = true;
-                     break;
-                 }
-                 else if (theObjectHit == placenta)
-                 {
-                     Debug.Log("Placenta hit");
-                     isHit = true;
-                     break;
-                 }
-             }
-             if (isHit == false)
-             {
+            if(theObjectHit.gameObject.tag == "Target")
+            {
+                Debug.Log("Target hit: " + theObjectHit.gameObject.name);
+            }
+            else
+            {
                  Debug.Log("Nothing hit");
                  StartCoroutine(DamageFlash());
-             }*/
+            }
         }
     }
 
