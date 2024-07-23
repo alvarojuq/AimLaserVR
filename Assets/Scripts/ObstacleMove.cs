@@ -18,7 +18,7 @@ public class ObstacleMove : MonoBehaviour
             endPos = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 7f);
         }
         StartCoroutine(LerpPosition(endPos, duration));
-        Debug.Log("Moving!");
+        //Debug.Log("Moving!");
     }
  
     IEnumerator LerpPosition(Vector3 targetPosition, float duration)

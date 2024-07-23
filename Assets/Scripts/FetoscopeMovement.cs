@@ -31,6 +31,7 @@ public class FetoscopeMovement : MonoBehaviour
     public Toggle ControlToggle;
 
     GameObject link;
+    SerialController serialScript;
 
     // Input actions
     public InputAction moveAction;
@@ -43,6 +44,9 @@ public class FetoscopeMovement : MonoBehaviour
         GetComponent<CharacterController>();
         m_Rigidbody = GetComponent<Rigidbody>();
         //fetoscopeCC.transform.localPosition.y = -15;
+
+        serial = GameObject.Find("SerialController");
+        serialScript = serial.GetComponent<SerialController>();
 
         // Enable the input actions
         moveAction.Enable();
@@ -128,8 +132,6 @@ public class FetoscopeMovement : MonoBehaviour
             }
             else if (fRot.cmode == 3) // fetoscope
             {
-                serial = GameObject.Find("SerialController");
-                SerialController serialScript = serial.GetComponent<SerialController>();
 
                 if (fetoscopeCC.transform.localPosition.y > serialScript.localPos)
                 {

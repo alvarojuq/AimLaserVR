@@ -32,6 +32,7 @@ public class CheckHit : MonoBehaviour
         {
             done = true;
             rend.material = material2;
+            this.enabled = false;
         }
     }
 }

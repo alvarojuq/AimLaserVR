@@ -205,8 +205,10 @@ public class SerialController : MonoBehaviour
             }
         }
         //posQueue = MovingAverage(posQueue, posQueue.Length);
-        rotX = words[1];
-        rotY = words[2];
+
+            rotX = words[1];
+            rotY = words[2];
+
         localPos = words[3];
         if (words[0] == 1)
         {

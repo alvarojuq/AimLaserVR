@@ -6,6 +6,7 @@ using UnityEngine.UI; //allows access to UI elements
 
 public class FetoscopeRotation : MonoBehaviour
 {
+    SerialController serialScript;
     private GameObject fetoCam;
     public GameObject serial;
     public GameObject joystick;
@@ -21,12 +22,15 @@ public class FetoscopeRotation : MonoBehaviour
     public float controllerSensitivity;
     public float fetoscopeTurnSpeed;
     private Vector3 moveDirection = Vector3.zero;
-
+    public float smoothingFactor = 5.0f;
     private void Start()
     {
         fetoCam = GameObject.Find("Fetoscope_Camera");
         
         cmode = 0;
+
+        serial = GameObject.Find("SerialController");
+        serialScript = serial.GetComponent<SerialController>();
     }
 
     public void OnSwitchInputMode()
@@ -37,6 +41,11 @@ public class FetoscopeRotation : MonoBehaviour
         {
             cmode = 0;
         }
+    }
+    public void CmodeSelect(int value)
+    {
+        Debug.Log("Control Mode Switched");
+        cmode = value;
     }
     void Update()
     {
@@ -103,21 +112,14 @@ public class FetoscopeRotation : MonoBehaviour
 
             transform.eulerAngles = new Vector3(0.0f, yaw, pitch);
         }
-        else if (cmode == 3) // fetoscop controller
+        else if (cmode == 3) // fetoscope controller
         {
-            serial = GameObject.Find("SerialController");
-            SerialController serialScript = serial.GetComponent<SerialController>();
-
-            yaw = serialScript.rotX;
-            pitch = serialScript.rotY;
-
-            //this clamps the amount the fetoscope can rotate
-            yaw = Mathf.Clamp(yaw, -35, 85);
-            pitch = Mathf.Clamp(pitch, 0, 120);
+            yaw = Mathf.Lerp(yaw, Mathf.Clamp(serialScript.rotX, -35, 85), smoothingFactor * Time.deltaTime);
+            pitch = Mathf.Lerp(pitch, Mathf.Clamp(serialScript.rotY, 0, 120), smoothingFactor * Time.deltaTime);
 
             transform.eulerAngles = new Vector3(0.0f, yaw, pitch);
-            roll = serialScript.rotZ;
 
+            roll = Mathf.Lerp(roll, serialScript.rotZ, smoothingFactor * Time.deltaTime);
             if (roll >= 360)
             {
                 roll = roll % 360;

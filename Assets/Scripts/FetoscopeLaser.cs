@@ -30,11 +30,19 @@ public class FetoscopeLaser : MonoBehaviour
     //a public reference to the Damage Flash UI element that shows when an incorrect location is ablated
     public GameObject damageFlash;
 
+    // Checks if serial footpedal has been pressed
+    public bool isOn = false;
+    SerialController serialScript;
     //Input Actions
     [Header("Input Actions")]
     public InputActionReference fireInput;
     public InputAction xrFireInput;
 
+    private void Start()
+    {
+        serial = GameObject.Find("SerialController");
+        serialScript = serial.GetComponent<SerialController>();
+    }
     private void OnEnable()
     {
         fireInput.action.Enable();
@@ -49,18 +57,12 @@ public class FetoscopeLaser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        serial = GameObject.Find("SerialController");
-        if(serial != null)
-        {
-            SerialController serialScript = serial.GetComponent<SerialController>();
-        }
-
         //an if statement to check if we are firing the fetoscope laser. Fire1 is a default Unity inout that corresponds to the left mouse button
         //The && UserMenu_Simulation.SimIsPause(false) ensures that the fire method isn't accidentally called when the sim is paused
 
-        if (!UserMenu_Simulation.SimIsPaused && (fireInput.action.IsPressed() || xrFireInput.IsPressed()))
+        if (!UserMenu_Simulation.SimIsPaused && (fireInput.action.IsPressed() || xrFireInput.IsPressed() || isOn))
         {
-            Debug.Log("test");
+            //Debug.Log("test");
             nextTimeToFire = Time.time + 1f / laserRate;
             LaserFire();
 
@@ -71,6 +73,20 @@ public class FetoscopeLaser : MonoBehaviour
         {
             LaserTone.Stop();
         }
+
+        if (serialScript.connected == true)
+        {
+            if ((serialScript.laserOn == true) && UserMenu_Simulation.SimIsPaused.Equals(false))
+            {
+                isOn = true;
+            }
+
+            if ((serialScript.laserOn == false) && UserMenu_Simulation.SimIsPaused.Equals(false))
+            {
+                isOn = false;
+            }
+        }
+
     }
 
     void LaserFire()
@@ -99,23 +115,25 @@ public class FetoscopeLaser : MonoBehaviour
             GameObject temp = Instantiate(ablationPrefab, hit.point, Quaternion.LookRotation(hit.normal));
             //this allows us to instantiate the decal onto the parent of the object hit, ensuring the decals move with any colliders and animations 
             temp.transform.parent = theObjectHit.transform;
-            if (theObjectHit.GetComponent<CheckHit>())
+            if (theObjectHit.GetComponent<CheckHit>() && theObjectHit.GetComponent<CheckHit>().enabled)
             {
                 CheckHit hitUp = theObjectHit.GetComponent<CheckHit>();
                 hitUp.progress++;
+                Gamification.instance.Hit();
             }
-            Debug.Log("Shooting!");
+            //Debug.Log("Shooting!");
 
             //if the laser hits anything but the placental surface, the damage flash animation appears
 
             if(theObjectHit.gameObject.tag == "Target")
             {
-                Debug.Log("Target hit: " + theObjectHit.gameObject.name);
+                //Debug.Log("Target hit: " + theObjectHit.gameObject.name);
             }
             else
             {
-                 Debug.Log("Nothing hit");
-                 StartCoroutine(DamageFlash());
+                // Debug.Log("Nothing hit");
+                Gamification.instance.Miss();
+                StartCoroutine(DamageFlash());
             }
         }
     }

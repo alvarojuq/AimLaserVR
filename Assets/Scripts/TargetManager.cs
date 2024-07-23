@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TargetManager : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class TargetManager : MonoBehaviour
     public GameObject board3;
     public GameObject decal;
     ProgressTrack finCheck;
+
+    [Header("Gameplay Report")]
+    public GameObject levelReport;
+    public TextMeshProUGUI accuracyTxt, timeTxt, scoreTxt, timeLeftTxt;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +50,7 @@ public class TargetManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
             print("Bar 9 key was pressed");
-            SwapBoard();
+            StartCoroutine(SwapBoard());
             finCheck.isFinish = false;
         }
 
@@ -65,30 +70,80 @@ public class TargetManager : MonoBehaviour
 
         if (finCheck.isFinish == true)
         {
-            SwapBoard();
+            StartCoroutine(SwapBoard());
             finCheck.isFinish = false;
         }
     }
 
-    void SwapBoard()
+    IEnumerator SwapBoard()
     {
+        Gamification.instance.SetTimer(false);
+
         if (board1.activeSelf == true)
         {
+            levelReport.SetActive(true);
+            StartCoroutine(TimeToNextLevel("Next Level in ", 5));
+            accuracyTxt.text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
+            timeTxt.text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0") + " seconds";
+            Gamification.instance.NextBoard();
+            scoreTxt.text = "Total Score: " + Gamification.instance.score;
+
             board1.SetActive(false);
-            board2.SetActive(true);
             board3.SetActive(false);
+            yield return new WaitForSeconds(5f);
+            levelReport.SetActive(false);
+            board2.SetActive(true);
         }
         else if (board2.activeSelf == true)
         {
+            levelReport.SetActive(true);
+            StartCoroutine(TimeToNextLevel("Next Level in ", 5));
+            accuracyTxt.text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
+            timeTxt.text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0") + " seconds";
+            Gamification.instance.NextBoard();
+            scoreTxt.text = "Total Score: " + Gamification.instance.score;
+
             board1.SetActive(false);
             board2.SetActive(false);
+            yield return new WaitForSeconds(5f);
+            levelReport.SetActive(false);
             board3.SetActive(true);
+        }
+        else if (board3.activeSelf == true)
+        {
+            levelReport.SetActive(true);
+            StartCoroutine(TimeToNextLevel("Final report in ", 5));
+            accuracyTxt.text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
+            timeTxt.text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0") + " seconds";
+            Gamification.instance.NextBoard();
+            scoreTxt.text = "Total Score: " + Gamification.instance.score;
+
+            board1.SetActive(false);
+            board2.SetActive(false);
+            board3.SetActive(false);
+            this.enabled = false;
+            yield return new WaitForSeconds(5f);
+
+            accuracyTxt.text = "Final Score: " + Gamification.instance.score;
+            timeTxt.text = "Grade: " + Gamification.instance.Grade();
+            scoreTxt.text = "";
+            timeLeftTxt.text = "";
         }
         GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Decal");
         foreach (GameObject obj in allObjects)
         {
                 Destroy(obj);
         }
+
+        Gamification.instance.SetTimer(true);
     }
 
+    IEnumerator TimeToNextLevel(string context, int x)
+    {
+        for (int i = 0; i < x; i++)
+        {
+            timeLeftTxt.text = context + (x - i) + "s";
+            yield return new WaitForSeconds(1f);
+        }
+    }
 }
