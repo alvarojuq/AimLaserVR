@@ -14,7 +14,7 @@ using System.Text;
  * Sample for reading using polling by yourself, and writing too.
  */
 public class SampleCustomDelimiter : MonoBehaviour
-{
+{/*
     public SerialControllerCustomDelimiter serialController;
 
     // Initialization
@@ -56,5 +56,5 @@ public class SampleCustomDelimiter : MonoBehaviour
         foreach (byte b in message)
             sb.AppendFormat("(#{0}={1})    ", b, (char)b);
         Debug.Log("Received some bytes, printing their ascii codes: " + sb);
-    }
+    }*/
 }

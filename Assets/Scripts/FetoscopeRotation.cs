@@ -23,6 +23,7 @@ public class FetoscopeRotation : MonoBehaviour
     public float fetoscopeTurnSpeed;
     private Vector3 moveDirection = Vector3.zero;
     public float smoothingFactor = 5.0f;
+    private PlayerControls inputActions;
     private void Start()
     {
         fetoCam = GameObject.Find("Fetoscope_Camera");
@@ -32,7 +33,20 @@ public class FetoscopeRotation : MonoBehaviour
         serial = GameObject.Find("SerialController");
         serialScript = serial.GetComponent<SerialController>();
     }
+    private void Awake()
+    {
+        inputActions = new PlayerControls();
+    }
 
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
     public void OnSwitchInputMode()
     {
         Debug.Log("Control Mode Switched");
@@ -64,16 +78,17 @@ public class FetoscopeRotation : MonoBehaviour
         }
         
     }
-
-
     //the method to rotate the pivot point 
     void RotatePivot()
     {
 
         if (cmode == 0) // keyboard
         {
-            yaw -= Input.GetAxis("Mouse X") * mouseSensitivity;
-            pitch -= Input.GetAxis("Mouse Y") * mouseSensitivity;
+            float lookInputX = inputActions.Default.AimingX.ReadValue<float>();
+            yaw -= lookInputX * mouseSensitivity * Time.deltaTime;
+
+            float lookInputY = inputActions.Default.AimingY.ReadValue<float>();
+            pitch -= lookInputY * mouseSensitivity * Time.deltaTime;
 
             //this clamps the amount the fetoscope can rotate
             yaw = Mathf.Clamp(yaw, -35, 85);
@@ -89,8 +104,8 @@ public class FetoscopeRotation : MonoBehaviour
             //In this case the range for each is different
             //the Yaw, or horizontal anlge can go from (-65, 65) degrees
             //the Pitch, or vertical angle can go from (-50, 50) degrees
-            float angle_horiz = 65 + (70 * -Input.GetAxis("PS3 RStick X"));
-            float angle_vert = 50 + (40 * -Input.GetAxis("PS3 RStick Y"));
+            float angle_horiz = 65 + (70 * -inputActions.Joystick.RStickX.ReadValue<float>());
+            float angle_vert = 50 + (40 * -inputActions.Joystick.RStickY.ReadValue<float>());
 
             //Calculate the quaternion for the angles
             Quaternion qh = Quaternion.Euler(0, angle_horiz, angle_vert);
@@ -114,7 +129,7 @@ public class FetoscopeRotation : MonoBehaviour
         }
         else if (cmode == 3) // fetoscope controller
         {
-            yaw = Mathf.Lerp(yaw, Mathf.Clamp(serialScript.rotX, -35, 85), smoothingFactor * Time.deltaTime);
+            /*yaw = Mathf.Lerp(yaw, Mathf.Clamp(serialScript.rotX, -35, 85), smoothingFactor * Time.deltaTime);
             pitch = Mathf.Lerp(pitch, Mathf.Clamp(serialScript.rotY, 0, 120), smoothingFactor * Time.deltaTime);
 
             transform.eulerAngles = new Vector3(0.0f, yaw, pitch);
@@ -124,7 +139,7 @@ public class FetoscopeRotation : MonoBehaviour
             {
                 roll = roll % 360;
             }
-            fetoCam.transform.eulerAngles = new Vector3(fetoCam.transform.eulerAngles.x, fetoCam.transform.eulerAngles.y, roll);
+            fetoCam.transform.eulerAngles = new Vector3(fetoCam.transform.eulerAngles.x, fetoCam.transform.eulerAngles.y, roll);*/
         }
 
     }

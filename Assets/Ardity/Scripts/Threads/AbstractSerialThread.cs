@@ -10,7 +10,7 @@ using UnityEngine;
 
 using System;
 using System.IO;
-using System.IO.Ports;
+//using System.IO.Ports;
 using System.Collections;
 using System.Threading;
 
@@ -22,7 +22,7 @@ using System.Threading;
  * versions.
  */
 public abstract class AbstractSerialThread
-{
+{/*
     // Parameters passed from SerialController, used for connecting to the
     // serial device as explained in the SerialController documentation.
     private string portName;
@@ -54,9 +54,9 @@ public abstract class AbstractSerialThread
     private bool enqueueStatusMessages = false;
 
 
-    /**************************************************************************
+    *//**************************************************************************
      * Methods intended to be invoked from the Unity thread.
-     *************************************************************************/
+     *************************************************************************//*
 
     // ------------------------------------------------------------------------
     // Constructs the thread object. This object is not a thread actually, but
@@ -114,10 +114,10 @@ public abstract class AbstractSerialThread
     }
 
 
-    /**************************************************************************
+    *//**************************************************************************
      * Methods intended to be invoked from the Ardity thread (the one
      * created by the SerialController).
-     *************************************************************************/
+     *************************************************************************//*
 
     // ------------------------------------------------------------------------
     // Enters an almost infinite loop of attempting connection to the serial
@@ -275,5 +275,5 @@ public abstract class AbstractSerialThread
     // ------------------------------------------------------------------------
     // Reads and returns a message from the serial port.
     // ------------------------------------------------------------------------
-    protected abstract object ReadFromWire(SerialPort serialPort);
+    protected abstract object ReadFromWire(SerialPort serialPort);*/
 }

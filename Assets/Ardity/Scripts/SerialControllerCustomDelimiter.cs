@@ -16,7 +16,7 @@ using System.Threading;
  * a 1-char delimiter.
  */
 public class SerialControllerCustomDelimiter : MonoBehaviour
-{
+{/*
     [Tooltip("Port name with which the SerialPort object will be created.")]
     public string portName = "COM3";
 
@@ -139,5 +139,5 @@ public class SerialControllerCustomDelimiter : MonoBehaviour
     {
         this.userDefinedTearDownFunction = userFunction;
     }
-
+*/
 }

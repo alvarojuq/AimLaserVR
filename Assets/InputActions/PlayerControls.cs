@@ -81,6 +81,42 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimingX"",
+                    ""type"": ""Value"",
+                    ""id"": ""54679854-fb40-4913-9e4b-9f59c7771bc5"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AimingY"",
+                    ""type"": ""Value"",
+                    ""id"": ""0ec784dd-1908-420d-a37c-1f5688c3d29d"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""VerticalMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""44df6b00-71af-488c-a023-b16b50cfe162"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ScrollWheel"",
+                    ""type"": ""Value"",
+                    ""id"": ""af9e083f-f4be-43a5-b238-a9845f1b36f1"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -270,6 +306,326 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""InputUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6653c01d-452f-4a1a-9098-70319b5f6541"",
+                    ""path"": ""<Mouse>/delta/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimingX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20e8d337-8207-48b5-850a-b91784c715c4"",
+                    ""path"": ""<Mouse>/delta/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimingY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""38ade0f1-6438-4a0f-b402-66070619508d"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""3fdfc35f-39b5-4e61-b27c-bd909266bbcb"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""2345923d-9e75-4af2-9716-862f1736143d"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""761e4f4c-681f-42fc-9c8c-8047802d5913"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollWheel"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""df26bcd0-aa33-4cab-87be-316290b72fbb"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""ac76f4c4-41a8-402b-a3c6-ab2be198ac2d"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        },
+        {
+            ""name"": ""Brightness"",
+            ""id"": ""16c8a304-947e-493e-9d54-039eb94e3f8c"",
+            ""actions"": [
+                {
+                    ""name"": ""Increase"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8e578cf-856b-4032-897a-21a2c98af3b1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Decrease"",
+                    ""type"": ""Button"",
+                    ""id"": ""99de1ee2-0ae6-438e-b2dd-20a70cf3a013"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4398ed48-b4c9-4446-90b4-caeada75253f"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Increase"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4cda64b-6e32-4feb-8173-9f2a6f3725df"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Decrease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""HeNe"",
+            ""id"": ""347539f2-5c23-4688-8a17-546b175f89b0"",
+            ""actions"": [
+                {
+                    ""name"": ""Increase"",
+                    ""type"": ""Button"",
+                    ""id"": ""6af753b3-1446-408b-a96c-bbb83ebccd5c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Decrease"",
+                    ""type"": ""Button"",
+                    ""id"": ""56b4219e-16d8-44e0-ac81-125796d0392c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6a3ed70d-5c14-4d70-9963-8d15054939a2"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Increase"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""adff9ada-c1c5-40ff-b667-6c20e8fcb5b4"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Decrease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""LaserPower"",
+            ""id"": ""dbe32c10-2b3a-4b1a-a9ae-8e206a9ac2e6"",
+            ""actions"": [
+                {
+                    ""name"": ""Increase"",
+                    ""type"": ""Button"",
+                    ""id"": ""b27c4fe0-2fb7-4a83-a05f-c9c29f1e4857"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Decrease"",
+                    ""type"": ""Button"",
+                    ""id"": ""106bb37a-0371-466b-bd13-461e5bb4d678"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""fce99189-8d04-40ef-9de5-0f7df8e13cec"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Increase"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""635bebc2-d43e-41e1-b513-25167f09e9f8"",
+                    ""path"": ""<Keyboard>/n"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Decrease"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Joystick"",
+            ""id"": ""45268c09-e3a3-4d1e-9882-2bdffdc48641"",
+            ""actions"": [
+                {
+                    ""name"": ""LStickY"",
+                    ""type"": ""Value"",
+                    ""id"": ""6107e2a7-39bb-4584-84fb-f9f87c43bfd0"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LStickX"",
+                    ""type"": ""Value"",
+                    ""id"": ""e8fea04b-4ebd-48aa-9dab-3902c49b0c37"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RStickY"",
+                    ""type"": ""Value"",
+                    ""id"": ""5aa0c3fa-5911-470e-837a-72d52468469a"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RStickX"",
+                    ""type"": ""Value"",
+                    ""id"": ""29c8f734-8098-4f47-98ee-9746e059cf76"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9d2bbc08-e301-48dd-a46e-5e7f6f10ac24"",
+                    ""path"": ""<Gamepad>/leftStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LStickY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9dbbdca-c3da-4837-adc1-0a92e32785ea"",
+                    ""path"": ""<Gamepad>/leftStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LStickX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e36ecd2-fe8d-47f4-b888-734faf38d82b"",
+                    ""path"": ""<Gamepad>/rightStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RStickX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa8f8299-b79a-495c-9858-777f5957ffdf"",
+                    ""path"": ""<Gamepad>/rightStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RStickY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -284,11 +640,37 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Default_Pause = m_Default.FindAction("Pause", throwIfNotFound: true);
         m_Default_InputUp = m_Default.FindAction("InputUp", throwIfNotFound: true);
         m_Default_InputDown = m_Default.FindAction("InputDown", throwIfNotFound: true);
+        m_Default_AimingX = m_Default.FindAction("AimingX", throwIfNotFound: true);
+        m_Default_AimingY = m_Default.FindAction("AimingY", throwIfNotFound: true);
+        m_Default_VerticalMovement = m_Default.FindAction("VerticalMovement", throwIfNotFound: true);
+        m_Default_ScrollWheel = m_Default.FindAction("ScrollWheel", throwIfNotFound: true);
+        // Brightness
+        m_Brightness = asset.FindActionMap("Brightness", throwIfNotFound: true);
+        m_Brightness_Increase = m_Brightness.FindAction("Increase", throwIfNotFound: true);
+        m_Brightness_Decrease = m_Brightness.FindAction("Decrease", throwIfNotFound: true);
+        // HeNe
+        m_HeNe = asset.FindActionMap("HeNe", throwIfNotFound: true);
+        m_HeNe_Increase = m_HeNe.FindAction("Increase", throwIfNotFound: true);
+        m_HeNe_Decrease = m_HeNe.FindAction("Decrease", throwIfNotFound: true);
+        // LaserPower
+        m_LaserPower = asset.FindActionMap("LaserPower", throwIfNotFound: true);
+        m_LaserPower_Increase = m_LaserPower.FindAction("Increase", throwIfNotFound: true);
+        m_LaserPower_Decrease = m_LaserPower.FindAction("Decrease", throwIfNotFound: true);
+        // Joystick
+        m_Joystick = asset.FindActionMap("Joystick", throwIfNotFound: true);
+        m_Joystick_LStickY = m_Joystick.FindAction("LStickY", throwIfNotFound: true);
+        m_Joystick_LStickX = m_Joystick.FindAction("LStickX", throwIfNotFound: true);
+        m_Joystick_RStickY = m_Joystick.FindAction("RStickY", throwIfNotFound: true);
+        m_Joystick_RStickX = m_Joystick.FindAction("RStickX", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
     {
         Debug.Assert(!m_Default.enabled, "This will cause a leak and performance issues, PlayerControls.Default.Disable() has not been called.");
+        Debug.Assert(!m_Brightness.enabled, "This will cause a leak and performance issues, PlayerControls.Brightness.Disable() has not been called.");
+        Debug.Assert(!m_HeNe.enabled, "This will cause a leak and performance issues, PlayerControls.HeNe.Disable() has not been called.");
+        Debug.Assert(!m_LaserPower.enabled, "This will cause a leak and performance issues, PlayerControls.LaserPower.Disable() has not been called.");
+        Debug.Assert(!m_Joystick.enabled, "This will cause a leak and performance issues, PlayerControls.Joystick.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -356,6 +738,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Pause;
     private readonly InputAction m_Default_InputUp;
     private readonly InputAction m_Default_InputDown;
+    private readonly InputAction m_Default_AimingX;
+    private readonly InputAction m_Default_AimingY;
+    private readonly InputAction m_Default_VerticalMovement;
+    private readonly InputAction m_Default_ScrollWheel;
     public struct DefaultActions
     {
         private @PlayerControls m_Wrapper;
@@ -366,6 +752,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Default_Pause;
         public InputAction @InputUp => m_Wrapper.m_Default_InputUp;
         public InputAction @InputDown => m_Wrapper.m_Default_InputDown;
+        public InputAction @AimingX => m_Wrapper.m_Default_AimingX;
+        public InputAction @AimingY => m_Wrapper.m_Default_AimingY;
+        public InputAction @VerticalMovement => m_Wrapper.m_Default_VerticalMovement;
+        public InputAction @ScrollWheel => m_Wrapper.m_Default_ScrollWheel;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -393,6 +783,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @InputDown.started += instance.OnInputDown;
             @InputDown.performed += instance.OnInputDown;
             @InputDown.canceled += instance.OnInputDown;
+            @AimingX.started += instance.OnAimingX;
+            @AimingX.performed += instance.OnAimingX;
+            @AimingX.canceled += instance.OnAimingX;
+            @AimingY.started += instance.OnAimingY;
+            @AimingY.performed += instance.OnAimingY;
+            @AimingY.canceled += instance.OnAimingY;
+            @VerticalMovement.started += instance.OnVerticalMovement;
+            @VerticalMovement.performed += instance.OnVerticalMovement;
+            @VerticalMovement.canceled += instance.OnVerticalMovement;
+            @ScrollWheel.started += instance.OnScrollWheel;
+            @ScrollWheel.performed += instance.OnScrollWheel;
+            @ScrollWheel.canceled += instance.OnScrollWheel;
         }
 
         private void UnregisterCallbacks(IDefaultActions instance)
@@ -415,6 +817,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @InputDown.started -= instance.OnInputDown;
             @InputDown.performed -= instance.OnInputDown;
             @InputDown.canceled -= instance.OnInputDown;
+            @AimingX.started -= instance.OnAimingX;
+            @AimingX.performed -= instance.OnAimingX;
+            @AimingX.canceled -= instance.OnAimingX;
+            @AimingY.started -= instance.OnAimingY;
+            @AimingY.performed -= instance.OnAimingY;
+            @AimingY.canceled -= instance.OnAimingY;
+            @VerticalMovement.started -= instance.OnVerticalMovement;
+            @VerticalMovement.performed -= instance.OnVerticalMovement;
+            @VerticalMovement.canceled -= instance.OnVerticalMovement;
+            @ScrollWheel.started -= instance.OnScrollWheel;
+            @ScrollWheel.performed -= instance.OnScrollWheel;
+            @ScrollWheel.canceled -= instance.OnScrollWheel;
         }
 
         public void RemoveCallbacks(IDefaultActions instance)
@@ -432,6 +846,238 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public DefaultActions @Default => new DefaultActions(this);
+
+    // Brightness
+    private readonly InputActionMap m_Brightness;
+    private List<IBrightnessActions> m_BrightnessActionsCallbackInterfaces = new List<IBrightnessActions>();
+    private readonly InputAction m_Brightness_Increase;
+    private readonly InputAction m_Brightness_Decrease;
+    public struct BrightnessActions
+    {
+        private @PlayerControls m_Wrapper;
+        public BrightnessActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Increase => m_Wrapper.m_Brightness_Increase;
+        public InputAction @Decrease => m_Wrapper.m_Brightness_Decrease;
+        public InputActionMap Get() { return m_Wrapper.m_Brightness; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(BrightnessActions set) { return set.Get(); }
+        public void AddCallbacks(IBrightnessActions instance)
+        {
+            if (instance == null || m_Wrapper.m_BrightnessActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_BrightnessActionsCallbackInterfaces.Add(instance);
+            @Increase.started += instance.OnIncrease;
+            @Increase.performed += instance.OnIncrease;
+            @Increase.canceled += instance.OnIncrease;
+            @Decrease.started += instance.OnDecrease;
+            @Decrease.performed += instance.OnDecrease;
+            @Decrease.canceled += instance.OnDecrease;
+        }
+
+        private void UnregisterCallbacks(IBrightnessActions instance)
+        {
+            @Increase.started -= instance.OnIncrease;
+            @Increase.performed -= instance.OnIncrease;
+            @Increase.canceled -= instance.OnIncrease;
+            @Decrease.started -= instance.OnDecrease;
+            @Decrease.performed -= instance.OnDecrease;
+            @Decrease.canceled -= instance.OnDecrease;
+        }
+
+        public void RemoveCallbacks(IBrightnessActions instance)
+        {
+            if (m_Wrapper.m_BrightnessActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IBrightnessActions instance)
+        {
+            foreach (var item in m_Wrapper.m_BrightnessActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_BrightnessActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public BrightnessActions @Brightness => new BrightnessActions(this);
+
+    // HeNe
+    private readonly InputActionMap m_HeNe;
+    private List<IHeNeActions> m_HeNeActionsCallbackInterfaces = new List<IHeNeActions>();
+    private readonly InputAction m_HeNe_Increase;
+    private readonly InputAction m_HeNe_Decrease;
+    public struct HeNeActions
+    {
+        private @PlayerControls m_Wrapper;
+        public HeNeActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Increase => m_Wrapper.m_HeNe_Increase;
+        public InputAction @Decrease => m_Wrapper.m_HeNe_Decrease;
+        public InputActionMap Get() { return m_Wrapper.m_HeNe; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(HeNeActions set) { return set.Get(); }
+        public void AddCallbacks(IHeNeActions instance)
+        {
+            if (instance == null || m_Wrapper.m_HeNeActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_HeNeActionsCallbackInterfaces.Add(instance);
+            @Increase.started += instance.OnIncrease;
+            @Increase.performed += instance.OnIncrease;
+            @Increase.canceled += instance.OnIncrease;
+            @Decrease.started += instance.OnDecrease;
+            @Decrease.performed += instance.OnDecrease;
+            @Decrease.canceled += instance.OnDecrease;
+        }
+
+        private void UnregisterCallbacks(IHeNeActions instance)
+        {
+            @Increase.started -= instance.OnIncrease;
+            @Increase.performed -= instance.OnIncrease;
+            @Increase.canceled -= instance.OnIncrease;
+            @Decrease.started -= instance.OnDecrease;
+            @Decrease.performed -= instance.OnDecrease;
+            @Decrease.canceled -= instance.OnDecrease;
+        }
+
+        public void RemoveCallbacks(IHeNeActions instance)
+        {
+            if (m_Wrapper.m_HeNeActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IHeNeActions instance)
+        {
+            foreach (var item in m_Wrapper.m_HeNeActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_HeNeActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public HeNeActions @HeNe => new HeNeActions(this);
+
+    // LaserPower
+    private readonly InputActionMap m_LaserPower;
+    private List<ILaserPowerActions> m_LaserPowerActionsCallbackInterfaces = new List<ILaserPowerActions>();
+    private readonly InputAction m_LaserPower_Increase;
+    private readonly InputAction m_LaserPower_Decrease;
+    public struct LaserPowerActions
+    {
+        private @PlayerControls m_Wrapper;
+        public LaserPowerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Increase => m_Wrapper.m_LaserPower_Increase;
+        public InputAction @Decrease => m_Wrapper.m_LaserPower_Decrease;
+        public InputActionMap Get() { return m_Wrapper.m_LaserPower; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LaserPowerActions set) { return set.Get(); }
+        public void AddCallbacks(ILaserPowerActions instance)
+        {
+            if (instance == null || m_Wrapper.m_LaserPowerActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_LaserPowerActionsCallbackInterfaces.Add(instance);
+            @Increase.started += instance.OnIncrease;
+            @Increase.performed += instance.OnIncrease;
+            @Increase.canceled += instance.OnIncrease;
+            @Decrease.started += instance.OnDecrease;
+            @Decrease.performed += instance.OnDecrease;
+            @Decrease.canceled += instance.OnDecrease;
+        }
+
+        private void UnregisterCallbacks(ILaserPowerActions instance)
+        {
+            @Increase.started -= instance.OnIncrease;
+            @Increase.performed -= instance.OnIncrease;
+            @Increase.canceled -= instance.OnIncrease;
+            @Decrease.started -= instance.OnDecrease;
+            @Decrease.performed -= instance.OnDecrease;
+            @Decrease.canceled -= instance.OnDecrease;
+        }
+
+        public void RemoveCallbacks(ILaserPowerActions instance)
+        {
+            if (m_Wrapper.m_LaserPowerActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ILaserPowerActions instance)
+        {
+            foreach (var item in m_Wrapper.m_LaserPowerActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_LaserPowerActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public LaserPowerActions @LaserPower => new LaserPowerActions(this);
+
+    // Joystick
+    private readonly InputActionMap m_Joystick;
+    private List<IJoystickActions> m_JoystickActionsCallbackInterfaces = new List<IJoystickActions>();
+    private readonly InputAction m_Joystick_LStickY;
+    private readonly InputAction m_Joystick_LStickX;
+    private readonly InputAction m_Joystick_RStickY;
+    private readonly InputAction m_Joystick_RStickX;
+    public struct JoystickActions
+    {
+        private @PlayerControls m_Wrapper;
+        public JoystickActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LStickY => m_Wrapper.m_Joystick_LStickY;
+        public InputAction @LStickX => m_Wrapper.m_Joystick_LStickX;
+        public InputAction @RStickY => m_Wrapper.m_Joystick_RStickY;
+        public InputAction @RStickX => m_Wrapper.m_Joystick_RStickX;
+        public InputActionMap Get() { return m_Wrapper.m_Joystick; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(JoystickActions set) { return set.Get(); }
+        public void AddCallbacks(IJoystickActions instance)
+        {
+            if (instance == null || m_Wrapper.m_JoystickActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_JoystickActionsCallbackInterfaces.Add(instance);
+            @LStickY.started += instance.OnLStickY;
+            @LStickY.performed += instance.OnLStickY;
+            @LStickY.canceled += instance.OnLStickY;
+            @LStickX.started += instance.OnLStickX;
+            @LStickX.performed += instance.OnLStickX;
+            @LStickX.canceled += instance.OnLStickX;
+            @RStickY.started += instance.OnRStickY;
+            @RStickY.performed += instance.OnRStickY;
+            @RStickY.canceled += instance.OnRStickY;
+            @RStickX.started += instance.OnRStickX;
+            @RStickX.performed += instance.OnRStickX;
+            @RStickX.canceled += instance.OnRStickX;
+        }
+
+        private void UnregisterCallbacks(IJoystickActions instance)
+        {
+            @LStickY.started -= instance.OnLStickY;
+            @LStickY.performed -= instance.OnLStickY;
+            @LStickY.canceled -= instance.OnLStickY;
+            @LStickX.started -= instance.OnLStickX;
+            @LStickX.performed -= instance.OnLStickX;
+            @LStickX.canceled -= instance.OnLStickX;
+            @RStickY.started -= instance.OnRStickY;
+            @RStickY.performed -= instance.OnRStickY;
+            @RStickY.canceled -= instance.OnRStickY;
+            @RStickX.started -= instance.OnRStickX;
+            @RStickX.performed -= instance.OnRStickX;
+            @RStickX.canceled -= instance.OnRStickX;
+        }
+
+        public void RemoveCallbacks(IJoystickActions instance)
+        {
+            if (m_Wrapper.m_JoystickActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IJoystickActions instance)
+        {
+            foreach (var item in m_Wrapper.m_JoystickActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_JoystickActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public JoystickActions @Joystick => new JoystickActions(this);
     public interface IDefaultActions
     {
         void OnLaserFire(InputAction.CallbackContext context);
@@ -440,5 +1086,31 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnInputUp(InputAction.CallbackContext context);
         void OnInputDown(InputAction.CallbackContext context);
+        void OnAimingX(InputAction.CallbackContext context);
+        void OnAimingY(InputAction.CallbackContext context);
+        void OnVerticalMovement(InputAction.CallbackContext context);
+        void OnScrollWheel(InputAction.CallbackContext context);
+    }
+    public interface IBrightnessActions
+    {
+        void OnIncrease(InputAction.CallbackContext context);
+        void OnDecrease(InputAction.CallbackContext context);
+    }
+    public interface IHeNeActions
+    {
+        void OnIncrease(InputAction.CallbackContext context);
+        void OnDecrease(InputAction.CallbackContext context);
+    }
+    public interface ILaserPowerActions
+    {
+        void OnIncrease(InputAction.CallbackContext context);
+        void OnDecrease(InputAction.CallbackContext context);
+    }
+    public interface IJoystickActions
+    {
+        void OnLStickY(InputAction.CallbackContext context);
+        void OnLStickX(InputAction.CallbackContext context);
+        void OnRStickY(InputAction.CallbackContext context);
+        void OnRStickX(InputAction.CallbackContext context);
     }
 }

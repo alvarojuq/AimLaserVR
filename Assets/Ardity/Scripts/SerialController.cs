@@ -24,7 +24,7 @@ using System.Threading;
  * data.
  */
 public class SerialController : MonoBehaviour
-{
+{/*
     // public GameObject rotatorXY;
     public Material mat1;
     public Material mat2;
@@ -40,7 +40,7 @@ public class SerialController : MonoBehaviour
     public bool laserOn;
     public bool connected;
 
-    /*public float XRot
+    *//*public float XRot
     {
         get => rotX;
         set
@@ -56,7 +56,7 @@ public class SerialController : MonoBehaviour
         {
             rotY = value;
         }
-    }*/
+    }*//*
 
     [Tooltip("Port name with which the SerialPort object will be created.")]
     public string portName = "COM3";
@@ -220,7 +220,7 @@ public class SerialController : MonoBehaviour
         }
         rotZ = words[4];
         //laser on/off toggle
-       /* if (words[0] == 1)
+       *//* if (words[0] == 1)
         {
             MeshRenderer meshRenderer = rotatorXY.GetComponent<MeshRenderer>();
             Material oldMaterial = meshRenderer.material;
@@ -296,7 +296,7 @@ public class SerialController : MonoBehaviour
             MeshRenderer meshRenderer = rotatorXY.GetComponent<MeshRenderer>();
             Material oldMaterial = meshRenderer.material;
             meshRenderer.material = mat2;
-        }*/
+        }*//*
     }
 
     // ------------------------------------------------------------------------
@@ -328,5 +328,5 @@ public class SerialController : MonoBehaviour
     {
         this.userDefinedTearDownFunction = userFunction;
     }
-
+*/
 }

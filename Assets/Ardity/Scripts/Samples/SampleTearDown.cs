@@ -13,7 +13,7 @@ using System.Collections;
  * Sample for reading using polling by yourself, and writing too.
  */
 public class SampleTearDown : MonoBehaviour
-{
+{/*
     public SerialController serialController;
 
     // Initialization
@@ -71,5 +71,5 @@ public class SampleTearDown : MonoBehaviour
     {
         Debug.Log("Executing teardown");
         serialController.SendSerialMessage("X");
-    }
+    }*/
 }

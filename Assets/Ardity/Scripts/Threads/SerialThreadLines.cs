@@ -8,8 +8,6 @@
 
 using UnityEngine;
 
-using System.IO.Ports;
-
 /**
  * This class contains methods that must be run from inside a thread and others
  * that must be invoked from Unity. Both types of methods are clearly marked in
@@ -19,6 +17,8 @@ using System.IO.Ports;
  * 
  * For method comments, refer to the base class.
  */
+/*using System.IO.Ports;
+
 public class SerialThreadLines : AbstractSerialThread
 {
     public SerialThreadLines(string portName,
@@ -38,4 +38,4 @@ public class SerialThreadLines : AbstractSerialThread
     {
         return serialPort.ReadLine();
     }
-}
+}*/

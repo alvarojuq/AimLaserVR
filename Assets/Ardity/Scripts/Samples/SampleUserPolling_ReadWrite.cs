@@ -13,7 +13,7 @@ using System.Collections;
  * Sample for reading using polling by yourself, and writing too.
  */
 public class SampleUserPolling_ReadWrite : MonoBehaviour
-{
+{/*
     public SerialController serialController;
 
     // Initialization
@@ -62,5 +62,5 @@ public class SampleUserPolling_ReadWrite : MonoBehaviour
             Debug.Log("Connection attempt failed or disconnection detected");
         else
             Debug.Log("Message arrived: " + message);
-    }
+    }*/
 }

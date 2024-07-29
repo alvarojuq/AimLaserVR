@@ -26,7 +26,7 @@ public class TargetManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad7))
+       /* if (Input.GetKeyDown(KeyCode.Keypad7))
         {
             print("7 key was pressed");
             board1.SetActive(true);
@@ -52,7 +52,7 @@ public class TargetManager : MonoBehaviour
             print("Bar 9 key was pressed");
             StartCoroutine(SwapBoard());
             finCheck.isFinish = false;
-        }
+        }*/
 
         //ProgressTrack finCheck;
         if (board1.activeSelf == true)

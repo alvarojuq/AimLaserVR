@@ -5,11 +5,6 @@
  * This work is released under the Creative Commons Attributions license.
  * https://creativecommons.org/licenses/by/2.0/
  */
-
-using UnityEngine;
-
-using System.IO.Ports;
-
 /**
  * This class contains methods that must be run from inside a thread and others
  * that must be invoked from Unity. Both types of methods are clearly marked in
@@ -19,6 +14,11 @@ using System.IO.Ports;
  * 
  * For method comments, refer to the base class.
  */
+using UnityEngine;
+/*
+using System.IO.Ports;
+
+
 public class SerialThreadBinaryDelimited : AbstractSerialThread
 {
     // Messages to/from the serial port should be delimited using this separator.
@@ -72,4 +72,4 @@ public class SerialThreadBinaryDelimited : AbstractSerialThread
     {
         return aByte == separator;
     }
-}
+}*/

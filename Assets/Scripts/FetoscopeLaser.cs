@@ -74,7 +74,7 @@ public class FetoscopeLaser : MonoBehaviour
             LaserTone.Stop();
         }
 
-        if (serialScript.connected == true)
+        /*if (serialScript.connected == true)
         {
             if ((serialScript.laserOn == true) && UserMenu_Simulation.SimIsPaused.Equals(false))
             {
@@ -85,7 +85,7 @@ public class FetoscopeLaser : MonoBehaviour
             {
                 isOn = false;
             }
-        }
+        }*/
 
     }
 
@@ -119,7 +119,9 @@ public class FetoscopeLaser : MonoBehaviour
             {
                 CheckHit hitUp = theObjectHit.GetComponent<CheckHit>();
                 hitUp.progress++;
-                Gamification.instance.Hit();
+
+                if (Gamification.instance)
+                    Gamification.instance.Hit();
             }
             //Debug.Log("Shooting!");
 
@@ -132,8 +134,11 @@ public class FetoscopeLaser : MonoBehaviour
             else
             {
                 // Debug.Log("Nothing hit");
-                Gamification.instance.Miss();
-                StartCoroutine(DamageFlash());
+                if (Gamification.instance)
+                {
+                    Gamification.instance.Miss();
+                    StartCoroutine(DamageFlash());
+                }
             }
         }
     }

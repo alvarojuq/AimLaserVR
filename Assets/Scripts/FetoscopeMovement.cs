@@ -34,8 +34,7 @@ public class FetoscopeMovement : MonoBehaviour
     SerialController serialScript;
 
     // Input actions
-    public InputAction moveAction;
-    public InputAction scrollAction;
+    private PlayerControls inputActions;
     private InputAction vrInputActions;
 
     // Start is called before the first frame update
@@ -48,15 +47,18 @@ public class FetoscopeMovement : MonoBehaviour
         serial = GameObject.Find("SerialController");
         serialScript = serial.GetComponent<SerialController>();
 
-        // Enable the input actions
-        moveAction.Enable();
-        scrollAction.Enable();
     }
-    private void OnDestroy()
+    private void Awake()
     {
-        // Disable the input actions
-        moveAction.Disable();
-        scrollAction.Disable();
+        inputActions = new PlayerControls();
+    }
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+    private void OnDisable()
+    {
+        inputActions.Disable();
     }
     // Update is called once per frame
     void Update()
@@ -83,57 +85,50 @@ public class FetoscopeMovement : MonoBehaviour
 
             if (fRot.cmode == 0) // mouse and keyboard
             {
-                //with the vector3 variable moveDirection, we are setting it equal to the forward direction of the fetoscope controller, based on the arrow key input and multipled by the fetoscope direction speed
-                moveDirection = (transform.forward * Input.GetAxis("Vertical") * fetoscopeDirectionSpeed);
-                //with the vector3 variable scrollDirection, we are setting it equal to the forward direction of the fetoscope controller, based on the mouse scroll whell input and multiplied by the fetoscope scroll speed
-                scrollDirection = (transform.forward * Input.GetAxis("Mouse ScrollWheel") * fetoscopeScrollSpeed);
+                // Read vertical movement input
+                float verticalInput = inputActions.Default.VerticalMovement.ReadValue<float>();
+                Vector3 moveDirection = transform.forward * verticalInput * fetoscopeDirectionSpeed;
 
+                 // Read scroll wheel input
+                  float scrollInput = inputActions.Default.ScrollWheel.ReadValue<float>();
+                  Vector3 scrollDirection = transform.forward * scrollInput * fetoscopeScrollSpeed * 0.01f;
 
-                //the bools below check to see if either the keys or scroll wheel is being used
-                //Mathf.Approximately returns true if the two values it's comparing are similar
-                //this means the bools below will only return true when either the keys are pressed or the wheel isn't scrolled
-                noVerticalInput = Mathf.Approximately(Input.GetAxis("Vertical"), 0f);
-                noScrollInput = Mathf.Approximately(Input.GetAxis("Mouse ScrollWheel"), 0f);
-                if (Input.GetKey(KeyCode.K))
-                {
-                    fetoscopeCC.Move(moveDirection * Time.deltaTime * fetoscopeDirectionSpeed);
-                }
-                if (Input.GetKey(KeyCode.I))
-                {
-                    fetoscopeCC.Move(-moveDirection * Time.deltaTime * fetoscopeDirectionSpeed);
-                }
+                // Determine if either input type is being used
+                bool noVerticalInput = Mathf.Approximately(verticalInput, 0f);
+               // bool noScrollInput = Mathf.Approximately(scrollInput, 0f);
 
-                //the bools from above are then used here to ensure the two control types don't have an additional effect on the speed of movement
-                //using the bools and if statements means that the keyboard and mouse scroll wheel work independtly, rather than together 
-                if (noVerticalInput == true)
+                // Apply movement based on input
+                if (!noVerticalInput)
                 {
-                    fetoscopeCC.Move(scrollDirection * Time.deltaTime);
-                }
-                else if (noScrollInput == true)
-                {
+                    // If vertical input is present, move using keyboard input
                     fetoscopeCC.Move(moveDirection * Time.deltaTime);
+                }
+                else if (!noScrollInput)
+                {
+                    // If scroll input is present, move using scroll wheel input
+                    fetoscopeCC.Move(scrollDirection * Time.deltaTime);
                 }
             }
             else if (fRot.cmode == 1) // gamepad
             { 
-                PS3moveDirection = (transform.forward * Input.GetAxis("PS3 LStick Y") * fetoscopePS3Speed);
+                PS3moveDirection = (transform.forward * inputActions.Joystick.LStickY.ReadValue<float>() * fetoscopePS3Speed);
                 //PS3moveDirection = (transform.forward * Input.GetAxis("Mouse Y") * fetoscopePS3Speed);
 
-                if(Mathf.Abs(Input.GetAxis("PS3 LStick Y")) > 0.05f)
+                if(Mathf.Abs(inputActions.Joystick.LStickY.ReadValue<float>()) > 0.05f)
                     fetoscopeCC.Move(PS3moveDirection * Time.deltaTime);
             }
             else if (fRot.cmode == 2) // vr controllers
             {
-                PS3moveDirection = (transform.forward * Input.GetAxis("PS3 LStick Y") * fetoscopePS3Speed);
+                PS3moveDirection = (transform.forward * inputActions.Joystick.LStickY.ReadValue<float>() * fetoscopePS3Speed);
                 //PS3moveDirection = (transform.forward * Input.GetAxis("Mouse Y") * fetoscopePS3Speed);
 
-                if (Mathf.Abs(Input.GetAxis("PS3 LStick Y")) > 0.05f)
+                if (Mathf.Abs(inputActions.Joystick.LStickY.ReadValue<float>()) > 0.05f)
                     fetoscopeCC.Move(PS3moveDirection * Time.deltaTime);
             }
             else if (fRot.cmode == 3) // fetoscope
             {
 
-                if (fetoscopeCC.transform.localPosition.y > serialScript.localPos)
+                /*if (fetoscopeCC.transform.localPosition.y > serialScript.localPos)
                 {
                     moveDirection = (transform.forward);
                     // while (fetoscopeCC.transform.localPosition.y > (serialScript.localPos+0.25))
@@ -144,7 +139,7 @@ public class FetoscopeMovement : MonoBehaviour
                     moveDirection = (-transform.forward);
                     // while (fetoscopeCC.transform.localPosition.y < (serialScript.localPos-0.25))
                     fetoscopeCC.Move(moveDirection * Time.deltaTime * fetoscopeDirectionSpeed);
-                }
+                }*/
             }
             
             

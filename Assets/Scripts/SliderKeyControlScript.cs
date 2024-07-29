@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI; //nedded to access the UI elements
 using TMPro; //needed to access TextMesh Pro
 
@@ -59,6 +60,7 @@ public class SliderKeyControlScript : MonoBehaviour
     //this value determines how long the key UI icons flash when pressed 
     public float KeyPressFlash = 0.2f;
 
+    private PlayerControls inputActions;
 
     // Start is called before the first frame update
     void Start()
@@ -83,7 +85,27 @@ public class SliderKeyControlScript : MonoBehaviour
         PowerValue.text = LaserPowerText + "";
     }
 
+    private void Awake()
+    {
+        inputActions = new PlayerControls();
 
+        inputActions.Brightness.Decrease.performed += ctx => DecreaseBrightness();
+        inputActions.Brightness.Increase.performed += ctx => IncreaseBrightness();
+        inputActions.HeNe.Decrease.performed += ctx => DecreaseHeNe();
+        inputActions.HeNe.Increase.performed += ctx => IncreaseHeNe();
+        inputActions.LaserPower.Decrease.performed += ctx => DecreaseLaserPower();
+        inputActions.LaserPower.Increase.performed += ctx => IncreaseLaserPower();
+
+    }
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -99,50 +121,70 @@ public class SliderKeyControlScript : MonoBehaviour
             HeNeValue.text = HeNeText + "";
             PowerValue.text = LaserPowerText + "";
 
-            //this assigns the slider movement to specific keys
-            //GetKeyDown indicates that each "slide" happens with one key press, and holding the key won't do anything
-            //the && operator creates a range that stop the user from increasing/decreasing the displayed brightness outside of the slider range
-            //the coroutine being called flashes the UI element corresponding to the key being pressed
-            if (Input.GetKeyDown("o") && BrightnessText > 0f)
-            {
-                FetoscopeBrightnessSlider.value -= BrightnessVariation;
-                BrightnessText -= BrightnessTextVariation;
-                StartCoroutine(O_isPressed());
-            }
-            else if (Input.GetKeyDown("p") && BrightnessText < 100f)
-            {
-                FetoscopeBrightnessSlider.value += BrightnessVariation;
-                BrightnessText += BrightnessTextVariation;
-                StartCoroutine(P_isPressed());
-            }
+        }
+    }
 
-            if (Input.GetKeyDown("k") && HeNeText > 1f)
-            {
-                HeNeSlider.value -= HeNeVariation;
-                HeNeText -= HeNeTextVariation;
-                StartCoroutine(K_isPressed());
-            }
-            else if (Input.GetKeyDown("l") && HeNeText < 5f)
-            {
-                HeNeSlider.value += HeNeVariation;
-                HeNeText += HeNeTextVariation;
-                StartCoroutine(L_isPressed());
-            }
+    //this assigns the slider movement to specific keys
+    //GetKeyDown indicates that each "slide" happens with one key press, and holding the key won't do anything
+    //the && operator creates a range that stop the user from increasing/decreasing the displayed brightness outside of the slider range
+    //the coroutine being called flashes the UI element corresponding to the key being pressed
+    private void DecreaseBrightness()
+    {
+        if (BrightnessText > 0f)
+        {
+            FetoscopeBrightnessSlider.value -= BrightnessVariation;
+            BrightnessText -= BrightnessTextVariation;
+            StartCoroutine(O_isPressed());
+        }
+    }
 
-            if (Input.GetKeyDown("n") && LaserPowerText > 10f)
-            {
-                LaserPowerSlider.value -= LaserVariation;
-                LaserPowerText -= LaserPowerTextVariation;
-                StartCoroutine(N_isPressed());
+    private void IncreaseBrightness()
+    {
+        if (BrightnessText < 100f)
+        {
+            FetoscopeBrightnessSlider.value += BrightnessVariation;
+            BrightnessText += BrightnessTextVariation;
+            StartCoroutine(P_isPressed());
+        }
+    }
 
-            }
+    private void DecreaseHeNe()
+    {
+        if (HeNeText > 1f)
+        {
+            HeNeSlider.value -= HeNeVariation;
+            HeNeText -= HeNeTextVariation;
+            StartCoroutine(K_isPressed());
+        }
+    }
 
-            else if (Input.GetKeyDown("m") && LaserPowerText < 60f)
-            {
-                LaserPowerSlider.value += LaserVariation;
-                LaserPowerText += LaserPowerTextVariation;
-                StartCoroutine(M_isPressed());
-            }
+    private void IncreaseHeNe()
+    {
+        if (HeNeText < 5f)
+        {
+            HeNeSlider.value += HeNeVariation;
+            HeNeText += HeNeTextVariation;
+            StartCoroutine(L_isPressed());
+        }
+    }
+
+    private void DecreaseLaserPower()
+    {
+        if (LaserPowerText > 10f)
+        {
+            LaserPowerSlider.value -= LaserVariation;
+            LaserPowerText -= LaserPowerTextVariation;
+            StartCoroutine(N_isPressed());
+        }
+    }
+
+    private void IncreaseLaserPower()
+    {
+        if (LaserPowerText < 60f)
+        {
+            LaserPowerSlider.value += LaserVariation;
+            LaserPowerText += LaserPowerTextVariation;
+            StartCoroutine(M_isPressed());
         }
     }
 
