@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 0fa2859f34c5bf941b71ccd9347add70,
+  m_LightingSettings: {fileID: 4890085278179872738, guid: d095c3df2c263b84bb06d1144f76cd80,
     type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -3510,11 +3510,14 @@ MonoBehaviour:
   board2: {fileID: 807165108}
   board3: {fileID: 340274133}
   decal: {fileID: 2014066706942773245, guid: fd93eb636b431074a89507d4a83f04f4, type: 3}
+  sim: {fileID: 0}
   levelReport: {fileID: 0}
   accuracyTxt: {fileID: 0}
   timeTxt: {fileID: 0}
   scoreTxt: {fileID: 0}
-  timeLeftTxt: {fileID: 0}
+  nextText: {fileID: 0}
+  laser: {fileID: 0}
+  nextLevel: 0
 --- !u!4 &277532033
 Transform:
   m_ObjectHideFlags: 0
@@ -8210,11 +8213,14 @@ MonoBehaviour:
   board2: {fileID: 62028716}
   board3: {fileID: 1195695857}
   decal: {fileID: 2014066706942773245, guid: fd93eb636b431074a89507d4a83f04f4, type: 3}
+  sim: {fileID: 0}
   levelReport: {fileID: 550042174}
   accuracyTxt: {fileID: 66061542}
   timeTxt: {fileID: 1182840515}
   scoreTxt: {fileID: 149924041}
-  timeLeftTxt: {fileID: 701259102}
+  nextText: {fileID: 701259102}
+  laser: {fileID: 1943267817}
+  nextLevel: 0
 --- !u!4 &667322931
 Transform:
   m_ObjectHideFlags: 0
@@ -8954,8 +8960,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 288, y: -474}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 38.7, y: -474}
+  m_SizeDelta: {x: 343.9, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &701259102
 MonoBehaviour:
@@ -8977,7 +8983,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next Level in 3s
+  m_text: Fire to move to next level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

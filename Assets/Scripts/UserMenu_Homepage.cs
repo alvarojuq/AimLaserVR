@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using UnityEngine.XR.Management;
 using UnityEngine.UI; //nedded to access the UI elements
 using UnityEngine.SceneManagement; //needed to switch between scenes
 
@@ -22,8 +24,15 @@ public class UserMenu_Homepage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var xrSettings = XRGeneralSettings.Instance;
+        if (xrSettings != null && xrSettings.Manager != null && xrSettings.Manager.activeLoader != null)
+        {
+            //Game is running in VR
+            GetComponent<Canvas>().enabled = false;
+        }
+
         //we set this bool to be false when we start in order to ensure the scene starts correctly upon reloading
-        MenuIsOpen = false;
+            MenuIsOpen = false;
         //this leaves the cursor as is, just like normal
         Cursor.lockState = CursorLockMode.None;
     }

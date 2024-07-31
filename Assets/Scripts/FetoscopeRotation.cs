@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Management;
 using UnityEngine.InputSystem;
 using UnityEngine.UI; //allows access to UI elements 
 
@@ -27,8 +28,16 @@ public class FetoscopeRotation : MonoBehaviour
     private void Start()
     {
         fetoCam = GameObject.Find("Fetoscope_Camera");
-        
-        cmode = 0;
+
+        var xrSettings = XRGeneralSettings.Instance;
+        if (xrSettings != null && xrSettings.Manager != null && xrSettings.Manager.activeLoader != null)
+        {
+            cmode = 2;
+        }
+        else
+        {
+            cmode = 0;
+        }
 
         serial = GameObject.Find("SerialController");
         serialScript = serial.GetComponent<SerialController>();
