@@ -27,6 +27,9 @@ public class FetoscopeRotation : MonoBehaviour
     private PlayerControls inputActions;
     private void Start()
     {
+        //this locks the cursor to the center of the game window, and hides the cursor on the game screen
+        Cursor.lockState = CursorLockMode.Locked;
+
         fetoCam = GameObject.Find("Fetoscope_Camera");
 
         var xrSettings = XRGeneralSettings.Instance;
@@ -72,17 +75,8 @@ public class FetoscopeRotation : MonoBehaviour
     }
     void Update()
     {
-        if (UserMenu_Simulation.SimIsPaused)
-        {
-            //this leaves the cursor as is, just like normal
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            //this locks the cursor to the center of the game window, and hides the cursor on the game screen
-            Cursor.lockState = CursorLockMode.Locked;
-            //press esc to show the cursor again
-
+        if (!UserMenu_Simulation.SimIsPaused)
+        { 
             RotatePivot();
         }
         

@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using System.IO;
+using System;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 public class TargetManager : MonoBehaviour
 {
     public GameObject board1;
@@ -15,11 +17,13 @@ public class TargetManager : MonoBehaviour
 
     [Header("Gameplay Report")]
     public GameObject levelReport;
-    public TextMeshProUGUI accuracyTxt, timeTxt, scoreTxt, nextText;
+    public TextMeshProUGUI[] accuracyTxt, timeTxt;
+    public TextMeshProUGUI scoreTxt, gradeText;
     public FetoscopeLaser laser;
 
-    private bool inLevel = true;
     public bool nextLevel = false;
+
+    public NearFarInteractor leftHand, rightHand;
 
     // Start is called before the first frame update
     void Start()
@@ -80,12 +84,16 @@ public class TargetManager : MonoBehaviour
             finCheck.isFinish = false;
         }
 
-        if (!inLevel && (laser.fireInput.action.IsPressed() || laser.xrFireInput.IsPressed() || laser.isOn))
+        if(levelReport.activeInHierarchy)
         {
-            nextLevel = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 
+    public void NextLevel()
+    {
+        nextLevel = true;
+    }
     IEnumerator SwapBoard()
     {
         Gamification.instance.SetTimer(false);
@@ -93,61 +101,72 @@ public class TargetManager : MonoBehaviour
         if (board1.activeSelf == true)
         {
             levelReport.SetActive(true);
-            accuracyTxt.text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
-            timeTxt.text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0") + " seconds";
+            accuracyTxt[0].text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
+            timeTxt[0].text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0");
             Gamification.instance.NextBoard();
             scoreTxt.text = "Total Score: " + Gamification.instance.score;
+
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.Confined;
+            leftHand.enableFarCasting = true;
+            rightHand.enableFarCasting = true;
 
             board1.SetActive(false);
             board3.SetActive(false);
 
-            yield return new WaitForSeconds(1f);
-            inLevel = false;
             yield return new WaitUntil(() => nextLevel);
 
-            nextLevel = false; inLevel = true;
+            leftHand.enableFarCasting = false;
+            rightHand.enableFarCasting = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
+            nextLevel = false;
             levelReport.SetActive(false);
             board2.SetActive(true);
         }
         else if (board2.activeSelf == true)
         {
             levelReport.SetActive(true);
-            accuracyTxt.text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
-            timeTxt.text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0") + " seconds";
+            accuracyTxt[1].text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
+            timeTxt[1].text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0");
             Gamification.instance.NextBoard();
             scoreTxt.text = "Total Score: " + Gamification.instance.score;
+
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.Confined;
+            leftHand.enableFarCasting = true;
+            rightHand.enableFarCasting = true;
 
             board1.SetActive(false);
             board2.SetActive(false);
 
-            yield return new WaitForSeconds(1f);
-            inLevel = false;
             yield return new WaitUntil(() => nextLevel);
 
-            nextLevel = false; inLevel = true;
+            leftHand.enableFarCasting = false;
+            rightHand.enableFarCasting = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
+            nextLevel = false;
             levelReport.SetActive(false);
             board3.SetActive(true);
         }
         else if (board3.activeSelf == true)
         {
             levelReport.SetActive(true);
-            accuracyTxt.text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
-            timeTxt.text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0") + " seconds";
+            accuracyTxt[2].text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
+            timeTxt[2].text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0");
             Gamification.instance.NextBoard();
-            nextText.text = "Fire to see results";
             scoreTxt.text = "Total Score: " + Gamification.instance.score;
             board1.SetActive(false);
             board2.SetActive(false);
             board3.SetActive(false);
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.Confined;
+            leftHand.enableFarCasting = true;
+            rightHand.enableFarCasting = true;
 
-            yield return new WaitForSeconds(1f);
-            inLevel = false;
-            yield return new WaitUntil(() => nextLevel);
-
-            accuracyTxt.text = "Final Score: " + Gamification.instance.score;
-            timeTxt.text = "Grade: " + Gamification.instance.Grade();
-            scoreTxt.text = "";
-            nextText.text = "Pause to exit simulation";
+            scoreTxt.text = "Total Score: " + Gamification.instance.score;
+            gradeText.text = "Grade: " + Gamification.instance.Grade();
         }
         GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Decal");
         foreach (GameObject obj in allObjects)
@@ -157,4 +176,43 @@ public class TargetManager : MonoBehaviour
 
         Gamification.instance.SetTimer(true);
     }
+
+    void WriteFile()
+    {
+        string dateTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        string path = Application.persistentDataPath + "/ReportCard_" + dateTime + ".txt";
+
+
+        // Check if the file already exists. If yes, delete it.
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+
+        // Create a file to write to.
+        using (StreamWriter sw = File.CreateText(path))
+        {
+            sw.WriteLine("Report Card");
+            sw.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            sw.WriteLine("");
+            sw.WriteLine("Level 1:");
+            sw.WriteLine(accuracyTxt[0].text);
+            sw.WriteLine(timeTxt[0].text);
+            sw.WriteLine("");
+            sw.WriteLine("Level 2:");
+            sw.WriteLine(accuracyTxt[1].text);
+            sw.WriteLine(timeTxt[1].text);
+            sw.WriteLine("");
+            sw.WriteLine("Level 3:");
+            sw.WriteLine(accuracyTxt[1].text);
+            sw.WriteLine(timeTxt[1].text);
+            sw.WriteLine("");
+            sw.WriteLine("Total Score: " + Gamification.instance.score);
+            sw.WriteLine("Grade: " + Gamification.instance.Grade());
+
+        }
+
+        Debug.Log("File created and written to: " + path);
+    }
+
 }

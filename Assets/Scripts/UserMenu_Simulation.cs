@@ -14,6 +14,9 @@ public class UserMenu_Simulation : MonoBehaviour
     public GameObject mainMenu;
     public GameObject settingsMenu;
 
+    public GameObject gameReport;
+    private bool showReport = false;
+
     //Gameobject for the esc icon
     public GameObject escDefault;
     public GameObject escActive;
@@ -28,23 +31,6 @@ public class UserMenu_Simulation : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*//a statment to make the esc key pause and resume the game 
-        if (PlayerControls.DefaultActions.ReferenceEquals()
-        {
-            if (SimIsPaused)
-            {
-                ResumeSim();
-            }
-            else
-            {
-                PauseSim();
-            }
-        }*/
-    }
     public void OnPause()
     {
         //a statment to make the pause action key pause and resume the game 
@@ -61,6 +47,15 @@ public class UserMenu_Simulation : MonoBehaviour
     //a method to pause the simulator
     public void ResumeSim()
     {
+        //this locks the cursor to the center of the game window, and hides the cursor on the game screen
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if(showReport)
+        {
+            gameReport.SetActive(true);
+        }
+        showReport = false;
+
         menuPanel.SetActive(false);
         Time.timeScale = 1f;
         mainMenu.SetActive(true);
@@ -74,6 +69,15 @@ public class UserMenu_Simulation : MonoBehaviour
     //a method to resume the simulator 
     public void PauseSim()
     {
+        //this leaves the cursor as is, just like normal
+        Cursor.lockState = CursorLockMode.None;
+
+        if(gameReport.activeInHierarchy)
+        {
+            gameReport.SetActive(false);
+            showReport = true;
+        }
+
         menuPanel.SetActive(true);
         Time.timeScale = 0f;
         escDefault.SetActive(false);
