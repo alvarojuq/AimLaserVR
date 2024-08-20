@@ -15,7 +15,7 @@ public class FetoscopeRotation : MonoBehaviour
     //set the starting values for the yaw (side to side) and pitch (up and down) and     
     float yaw = 65f;
     float pitch = 50f;
-    float roll = 0.0f;
+  //  float roll = 0.0f;
 
     //a public variable for the mouse sensitivity
     public float mouseSensitivity;
