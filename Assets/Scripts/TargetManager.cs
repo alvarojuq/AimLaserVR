@@ -10,6 +10,8 @@ public class TargetManager : MonoBehaviour
     public GameObject board1;
     public GameObject board2;
     public GameObject board3;
+    public GameObject board4;
+    public GameObject board5;
     public GameObject decal;
     ProgressTrack finCheck;
 
@@ -31,6 +33,8 @@ public class TargetManager : MonoBehaviour
         board1.SetActive(true);
         board2.SetActive(false);
         board3.SetActive(false);
+        board4.SetActive(false);
+        board5.SetActive(false);
     }
 
     // Update is called once per frame
@@ -77,6 +81,14 @@ public class TargetManager : MonoBehaviour
         {
             finCheck = board3.GetComponent<ProgressTrack>();
         }
+        if (board4.activeSelf == true)
+        {
+            finCheck = board4.GetComponent<ProgressTrack>();
+        }
+        if (board5.activeSelf == true)
+        {
+            finCheck = board5.GetComponent<ProgressTrack>();
+        }
 
         if (finCheck.isFinish == true)
         {
@@ -112,7 +124,10 @@ public class TargetManager : MonoBehaviour
             rightHand.enableFarCasting = true;
 
             board1.SetActive(false);
+            board2.SetActive(false);
             board3.SetActive(false);
+            board4.SetActive(false);
+            board5.SetActive(false);
 
             yield return new WaitUntil(() => nextLevel);
 
@@ -139,6 +154,9 @@ public class TargetManager : MonoBehaviour
 
             board1.SetActive(false);
             board2.SetActive(false);
+            board3.SetActive(false);
+            board4.SetActive(false);
+            board5.SetActive(false);
 
             yield return new WaitUntil(() => nextLevel);
 
@@ -157,9 +175,69 @@ public class TargetManager : MonoBehaviour
             timeTxt[2].text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0");
             Gamification.instance.NextBoard();
             scoreTxt.text = "Total Score: " + Gamification.instance.score;
+
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.Confined;
+            leftHand.enableFarCasting = true;
+            rightHand.enableFarCasting = true;
+
             board1.SetActive(false);
             board2.SetActive(false);
             board3.SetActive(false);
+            board4.SetActive(false);
+            board5.SetActive(false);
+
+            yield return new WaitUntil(() => nextLevel);
+
+            leftHand.enableFarCasting = false;
+            rightHand.enableFarCasting = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
+            nextLevel = false;
+            levelReport.SetActive(false);
+            board4.SetActive(true);
+        }
+        else if (board4.activeSelf == true)
+        {
+            levelReport.SetActive(true);
+            accuracyTxt[3].text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
+            timeTxt[3].text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0");
+            Gamification.instance.NextBoard();
+            scoreTxt.text = "Total Score: " + Gamification.instance.score;
+
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.Confined;
+            leftHand.enableFarCasting = true;
+            rightHand.enableFarCasting = true;
+
+            board1.SetActive(false);
+            board2.SetActive(false);
+            board3.SetActive(false);
+            board4.SetActive(false);
+            board5.SetActive(false);
+
+            yield return new WaitUntil(() => nextLevel);
+
+            leftHand.enableFarCasting = false;
+            rightHand.enableFarCasting = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
+            nextLevel = false;
+            levelReport.SetActive(false);
+            board5.SetActive(true);
+        }
+        else if (board5.activeSelf == true)
+        {
+            levelReport.SetActive(true);
+            accuracyTxt[4].text = "Accuracy: " + Gamification.instance.HitPercentage().ToString("0") + "%";
+            timeTxt[4].text = "Time: " + Gamification.instance.TimeSpent().ToString("0.0");
+            Gamification.instance.NextBoard();
+            scoreTxt.text = "Total Score: " + Gamification.instance.score;
+            board1.SetActive(false);
+            board2.SetActive(false);
+            board3.SetActive(false);
+            board4.SetActive(false);
+            board5.SetActive(false);
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.Confined;
             leftHand.enableFarCasting = true;
@@ -180,7 +258,7 @@ public class TargetManager : MonoBehaviour
     void WriteFile()
     {
         string dateTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-        string path = Application.persistentDataPath + "/ReportCard_" + dateTime + ".txt";
+        string path = Application.persistentDataPath + "/TrainingReportCard_" + dateTime + ".txt";
 
 
         // Check if the file already exists. If yes, delete it.
@@ -192,7 +270,7 @@ public class TargetManager : MonoBehaviour
         // Create a file to write to.
         using (StreamWriter sw = File.CreateText(path))
         {
-            sw.WriteLine("Report Card");
+            sw.WriteLine("Report Card - Target Board Training");
             sw.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             sw.WriteLine("");
             sw.WriteLine("Level 1:");
@@ -204,8 +282,16 @@ public class TargetManager : MonoBehaviour
             sw.WriteLine(timeTxt[1].text);
             sw.WriteLine("");
             sw.WriteLine("Level 3:");
-            sw.WriteLine(accuracyTxt[1].text);
-            sw.WriteLine(timeTxt[1].text);
+            sw.WriteLine(accuracyTxt[2].text);
+            sw.WriteLine(timeTxt[2].text);
+            sw.WriteLine("");
+            sw.WriteLine("Level 4:");
+            sw.WriteLine(accuracyTxt[3].text);
+            sw.WriteLine(timeTxt[3].text);
+            sw.WriteLine("");
+            sw.WriteLine("Level 5:");
+            sw.WriteLine(accuracyTxt[4].text);
+            sw.WriteLine(timeTxt[4].text);
             sw.WriteLine("");
             sw.WriteLine("Total Score: " + Gamification.instance.score);
             sw.WriteLine("Grade: " + Gamification.instance.Grade());

@@ -44,8 +44,8 @@ public class FetoscopeMovement : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
         //fetoscopeCC.transform.localPosition.y = -15;
 
-        serial = GameObject.Find("SerialController");
-        serialScript = serial.GetComponent<SerialController>();
+        //serial = GameObject.Find("SerialController");
+        //serialScript = serial.GetComponent<SerialController>();
 
     }
     private void Awake()

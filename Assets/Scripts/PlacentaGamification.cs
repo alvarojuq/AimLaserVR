@@ -1,12 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gamification : MonoBehaviour
+public class PlacentaGamification : MonoBehaviour
 {
     //Used to easily reference the script in other scripts
-    public static Gamification instance;
+    public static PlacentaGamification instance;
 
     // Keeps track of misses and hits
     private int hitCount, missCount;
@@ -36,8 +35,8 @@ public class Gamification : MonoBehaviour
     private void Update()
     {
         // Timer that counts up
-        if(timerOn && UserMenu_Simulation.SimIsPaused.Equals(false))
-        timer += Time.deltaTime;
+        if (timerOn && UserMenu_Simulation.SimIsPaused.Equals(false))
+            timer += Time.deltaTime;
     }
 
     public void SetTimer(bool value)
@@ -55,7 +54,7 @@ public class Gamification : MonoBehaviour
     public void Hit()
     {
         //Adds a hit to the hitcounter when laser hits the target
-        if(timerOn)
+        if (timerOn)
             hitCount++;
     }
     public void Miss()
@@ -75,32 +74,29 @@ public class Gamification : MonoBehaviour
     {
         // Adds that rounds score to total score and resets the variables for the next round
         AddScore();
-        hitCount = 0;
-        missCount = 0;
-        timer = 0;
     }
 
     public void AddScore()
     {
         // Calculates the score for the round and adds it to the total
-        score += (int)(hitCount + (HitPercentage() * 2) + (100 - TimeSpent()));
+        score = ((int)(hitCount + (HitPercentage() * 2) + (100 - TimeSpent()))) * 3;
     }
 
     public string Grade()
     {
-        if (score <= 2599)
+        if (score <= 1499)
         {
             return "F";
         }
-        else if (score <= 2799)
+        else if (score <= 2199)
         {
             return "D";
         }
-        else if (score <= 2999)
+        else if (score <= 2399)
         {
             return "C";
         }
-        else if (score <= 3149)
+        else if (score <= 2449)
         {
             return "B";
         }

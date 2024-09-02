@@ -10,6 +10,9 @@ TagManager:
   - Tissue
   - Target
   - Decal
+  - NonMixedRealityObjects
+  - TargetBoardObjects
+  - SimulationObjects
   layers:
   - Default
   - TransparentFX
@@ -18,9 +21,9 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Uterus
   - PostProcessing
-  - 
+  - Placenta
   - 
   - 
   - 

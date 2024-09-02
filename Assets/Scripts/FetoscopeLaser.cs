@@ -3,9 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.UI; //nedded to access the UI elements
+using UnityEngine.UI;
 
 public class FetoscopeLaser : MonoBehaviour
 {
@@ -40,8 +41,8 @@ public class FetoscopeLaser : MonoBehaviour
 
     private void Start()
     {
-        serial = GameObject.Find("SerialController");
-        serialScript = serial.GetComponent<SerialController>();
+        //serial = GameObject.Find("SerialController");
+       // serialScript = serial.GetComponent<SerialController>();
     }
     private void OnEnable()
     {
@@ -113,6 +114,14 @@ public class FetoscopeLaser : MonoBehaviour
             Vector3 newnorm = new Vector3(hit.normal.x - 90, hit.normal.y, hit.normal.z);
             //GameObject temp = Instantiate(ablationPrefab, hit.point, Quaternion.FromToRotation(Vector3.up, newnorm));
             GameObject temp = Instantiate(ablationPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+
+            float distance = Vector3.Distance(fetoscopeCamera.transform.position, hit.point);
+            distance = Mathf.Clamp(distance, 0f, 20);
+            float ablationSize = 1f - (distance / 20);
+           // temp.GetComponent<DecalProjector>().size = new Vector3(ablationSize, ablationSize, ablationSize);
+            temp.GetComponent<DecalProjector>().fadeFactor = ablationSize;
+            
+
             //this allows us to instantiate the decal onto the parent of the object hit, ensuring the decals move with any colliders and animations 
             temp.transform.parent = theObjectHit.transform;
             if (theObjectHit.GetComponent<CheckHit>() && theObjectHit.GetComponent<CheckHit>().enabled)
@@ -122,6 +131,8 @@ public class FetoscopeLaser : MonoBehaviour
 
                 if (Gamification.instance)
                     Gamification.instance.Hit();
+                if (PlacentaGamification.instance)
+                    PlacentaGamification.instance.Hit();
             }
             //Debug.Log("Shooting!");
 
@@ -133,10 +144,14 @@ public class FetoscopeLaser : MonoBehaviour
             }
             else
             {
-                // Debug.Log("Nothing hit");
                 if (Gamification.instance)
                 {
                     Gamification.instance.Miss();
+                    StartCoroutine(DamageFlash());
+                }
+                if (PlacentaGamification.instance)
+                {
+                    PlacentaGamification.instance.Miss();
                     StartCoroutine(DamageFlash());
                 }
             }

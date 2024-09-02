@@ -42,8 +42,8 @@ public class FetoscopeRotation : MonoBehaviour
             cmode = 0;
         }
 
-        serial = GameObject.Find("SerialController");
-        serialScript = serial.GetComponent<SerialController>();
+        //serial = GameObject.Find("SerialController");
+        //serialScript = serial.GetComponent<SerialController>();
     }
     private void Awake()
     {
