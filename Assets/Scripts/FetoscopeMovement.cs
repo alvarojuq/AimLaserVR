@@ -44,8 +44,8 @@ public class FetoscopeMovement : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
         //fetoscopeCC.transform.localPosition.y = -15;
 
-        //serial = GameObject.Find("SerialController");
-        //serialScript = serial.GetComponent<SerialController>();
+        serial = GameObject.Find("SerialController");
+        serialScript = serial.GetComponent<SerialController>();
 
     }
     private void Awake()
@@ -128,7 +128,7 @@ public class FetoscopeMovement : MonoBehaviour
             else if (fRot.cmode == 3) // fetoscope
             {
 
-                /*if (fetoscopeCC.transform.localPosition.y > serialScript.localPos)
+                if (fetoscopeCC.transform.localPosition.y > serialScript.localPos)
                 {
                     moveDirection = (transform.forward);
                     // while (fetoscopeCC.transform.localPosition.y > (serialScript.localPos+0.25))
@@ -139,7 +139,7 @@ public class FetoscopeMovement : MonoBehaviour
                     moveDirection = (-transform.forward);
                     // while (fetoscopeCC.transform.localPosition.y < (serialScript.localPos-0.25))
                     fetoscopeCC.Move(moveDirection * Time.deltaTime * fetoscopeDirectionSpeed);
-                }*/
+                }
             }
             
             

@@ -1255,7 +1255,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 128384, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
       propertyPath: m_RootOrder
@@ -2321,6 +2321,7 @@ GameObject:
   - component: {fileID: 144904079}
   - component: {fileID: 144904078}
   - component: {fileID: 144904077}
+  - component: {fileID: 144904080}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -2443,6 +2444,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 144904075}
   m_CullTransparentMesh: 0
+--- !u!114 &144904080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144904075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b3638c2f5db5b479ff24c2859713d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PokeFollowTransform: {fileID: 83194355}
+  m_SmoothingSpeed: 16
+  m_ReturnToInitialPosition: 1
+  m_ApplyIfChildIsTarget: 1
+  m_ClampToMaxDistance: 1
+  m_MaxDistance: 50
 --- !u!1 &148593925
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,7 +2538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3812,7 +3831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.24705882, g: 0.24705882, b: 0.24705882, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5173,6 +5192,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HPGlia
       objectReference: {fileID: 0}
+    - target: {fileID: 3305013549428472249, guid: fd2fd3f37f2ac384a925d572dab12d72,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3305013549428472255, guid: fd2fd3f37f2ac384a925d572dab12d72,
         type: 3}
       propertyPath: m_RootOrder
@@ -5515,7 +5539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.24705882, g: 0.24705882, b: 0.24705882, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5643,7 +5667,6 @@ RectTransform:
   - {fileID: 700439629}
   - {fileID: 2036579427}
   - {fileID: 226136412}
-  - {fileID: 700394152}
   - {fileID: 1243987331}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5715,6 +5738,8 @@ MonoBehaviour:
   gameReport: {fileID: 1817427420}
   escDefault: {fileID: 975422591}
   escActive: {fileID: 681433185}
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
 --- !u!114 &447586224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6785,7 +6810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &500101328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6798,8 +6823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4dab67441d972b44a0b801be742c2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {fileID: 0}
-  rotation: {fileID: 0}
+  position: {fileID: 2131629065}
+  rotation: {fileID: 2131629065}
   rollCam: {fileID: 0}
 --- !u!4 &500101329
 Transform:
@@ -6851,6 +6876,7 @@ GameObject:
   - component: {fileID: 501608617}
   - component: {fileID: 501608616}
   - component: {fileID: 501608615}
+  - component: {fileID: 501608618}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -6985,6 +7011,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501608613}
   m_CullTransparentMesh: 0
+--- !u!114 &501608618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501608613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b3638c2f5db5b479ff24c2859713d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PokeFollowTransform: {fileID: 83194355}
+  m_SmoothingSpeed: 16
+  m_ReturnToInitialPosition: 1
+  m_ApplyIfChildIsTarget: 1
+  m_ClampToMaxDistance: 1
+  m_MaxDistance: 50
 --- !u!1 &508981634
 GameObject:
   m_ObjectHideFlags: 0
@@ -8199,11 +8243,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_BackGroundColor.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -8356,6 +8400,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5033801203051696737, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033801203051696737, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
+        type: 3}
       propertyPath: m_RayInteractors.Array.data[1].m_Interactor
       value: 
       objectReference: {fileID: 0}
@@ -8377,12 +8426,12 @@ PrefabInstance:
     - target: {fileID: 5944131804917401860, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6501755809687671949, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6678509202150728127, guid: f6336ac4ac8b4d34bc5072418cdc62a0,
         type: 3}
@@ -9188,6 +9237,7 @@ GameObject:
   - component: {fileID: 605533180}
   - component: {fileID: 605533179}
   - component: {fileID: 605533178}
+  - component: {fileID: 605533181}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -9310,6 +9360,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605533176}
   m_CullTransparentMesh: 0
+--- !u!114 &605533181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605533176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b3638c2f5db5b479ff24c2859713d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PokeFollowTransform: {fileID: 83194355}
+  m_SmoothingSpeed: 16
+  m_ReturnToInitialPosition: 1
+  m_ApplyIfChildIsTarget: 1
+  m_ClampToMaxDistance: 1
+  m_MaxDistance: 50
 --- !u!1 &616079388
 GameObject:
   m_ObjectHideFlags: 0
@@ -10065,12 +10133,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 863070038}
     m_Modifications:
     - target: {fileID: 1898072257393972, guid: 17ff98611151fc444ba9d364be509966, type: 3}
+      propertyPath: m_Name
+      value: InteriorObjects
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898072257393972, guid: 17ff98611151fc444ba9d364be509966, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1898072257393972, guid: 17ff98611151fc444ba9d364be509966, type: 3}
       propertyPath: m_TagString
-      value: NonMixedRealityObjects
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4015085276404860, guid: 17ff98611151fc444ba9d364be509966, type: 3}
       propertyPath: m_RootOrder
@@ -10196,7 +10268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10297,7 +10369,7 @@ GameObject:
   - component: {fileID: 667322930}
   m_Layer: 0
   m_Name: BoardManager
-  m_TagString: TargetBoardObjects
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10320,6 +10392,7 @@ MonoBehaviour:
   board4: {fileID: 1209068230}
   board5: {fileID: 1144374195}
   decal: {fileID: 2014066706942773245, guid: fd93eb636b431074a89507d4a83f04f4, type: 3}
+  sceneLoader: {fileID: 447586224}
   sim: {fileID: 447586223}
   levelReport: {fileID: 1817427420}
   accuracyTxt:
@@ -10338,6 +10411,7 @@ MonoBehaviour:
   gradeText: {fileID: 1422883281}
   laser: {fileID: 1943267817}
   nextLevel: 0
+  endScene: 0
   leftHand: {fileID: 1835159853}
   rightHand: {fileID: 1811933615}
 --- !u!4 &667322931
@@ -10430,7 +10504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11232,6 +11306,7 @@ GameObject:
   - component: {fileID: 700394155}
   - component: {fileID: 700394154}
   - component: {fileID: 700394153}
+  - component: {fileID: 700394156}
   m_Layer: 5
   m_Name: Canvas_UserMenu
   m_TagString: Untagged
@@ -11246,18 +11321,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700394151}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.02571372, y: -0, z: -0, w: 0.9996694}
+  m_LocalPosition: {x: 0, y: 0, z: 1.829}
+  m_LocalScale: {x: 0.0011530198, y: 0.0011530198, z: 0.0011530198}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2054158424}
-  m_Father: {fileID: 447586221}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 2.947, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.114, y: -0.243}
+  m_SizeDelta: {x: 809.59, y: 579.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &700394153
 MonoBehaviour:
@@ -11298,7 +11373,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &700394155
 Canvas:
   m_ObjectHideFlags: 0
@@ -11308,8 +11383,8 @@ Canvas:
   m_GameObject: {fileID: 700394151}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 2
+  m_Camera: {fileID: 2131629074}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -11322,6 +11397,25 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &700394156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700394151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &700439628
 GameObject:
   m_ObjectHideFlags: 0
@@ -21231,7 +21325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.24705882, g: 0.24705882, b: 0.24705882, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -21546,7 +21640,7 @@ PrefabInstance:
     - target: {fileID: 8509626193411375462, guid: 8988d6e7acd52a3428343f28ca21b6cf,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8509626193411375482, guid: 8988d6e7acd52a3428343f28ca21b6cf,
         type: 3}
@@ -22379,7 +22473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.24705882, g: 0.24705882, b: 0.24705882, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -23074,6 +23168,7 @@ GameObject:
   - component: {fileID: 1505651400}
   - component: {fileID: 1505651399}
   - component: {fileID: 1505651398}
+  - component: {fileID: 1505651401}
   m_Layer: 5
   m_Name: SimSettings
   m_TagString: Untagged
@@ -23208,6 +23303,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505651396}
   m_CullTransparentMesh: 0
+--- !u!114 &1505651401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505651396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b3638c2f5db5b479ff24c2859713d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PokeFollowTransform: {fileID: 83194355}
+  m_SmoothingSpeed: 16
+  m_ReturnToInitialPosition: 1
+  m_ApplyIfChildIsTarget: 1
+  m_ClampToMaxDistance: 1
+  m_MaxDistance: 50
 --- !u!1 &1510732541
 GameObject:
   m_ObjectHideFlags: 0
@@ -28819,7 +28932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
+  m_Color: {r: 0.24705882, g: 0.24705882, b: 0.24705882, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -30738,7 +30851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1458901972642486, guid: 9bff135ecf6e9e14aa072b553e38cd27, type: 3}
       propertyPath: m_Name
-      value: surgica_table (1)
+      value: surgica_table
       objectReference: {fileID: 0}
     - target: {fileID: 1458901972642486, guid: 9bff135ecf6e9e14aa072b553e38cd27, type: 3}
       propertyPath: m_IsActive
@@ -32859,7 +32972,7 @@ GameObject:
   - component: {fileID: 1856374189}
   m_Layer: 0
   m_Name: PlacentaTargets
-  m_TagString: SimulationObjects
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32895,6 +33008,7 @@ MonoBehaviour:
   decal: {fileID: 2014066706942773245, guid: fd93eb636b431074a89507d4a83f04f4, type: 3}
   finCheck: {fileID: 597410844}
   sim: {fileID: 447586223}
+  sceneLoader: {fileID: 447586224}
   levelReport: {fileID: 536191881}
   accuracyTxt: {fileID: 1296182150}
   timeTxt: {fileID: 234802439}
@@ -32902,6 +33016,7 @@ MonoBehaviour:
   gradeText: {fileID: 863687128}
   laser: {fileID: 1943267817}
   nextLevel: 0
+  endScene: 0
   leftHand: {fileID: 1835159853}
   rightHand: {fileID: 1811933615}
 --- !u!114 &1856374190
@@ -35724,6 +35839,7 @@ GameObject:
   - component: {fileID: 2054158427}
   - component: {fileID: 2054158426}
   - component: {fileID: 2054158425}
+  - component: {fileID: 2054158428}
   m_Layer: 5
   m_Name: Panel_Menus
   m_TagString: Untagged
@@ -35786,7 +35902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8509804}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -35811,6 +35927,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054158423}
   m_CullTransparentMesh: 0
+--- !u!114 &2054158428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054158423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 0
+  m_CheckFor2DOcclusion: 0
+  m_CheckFor3DOcclusion: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RaycastTriggerInteraction: 1
 --- !u!1 &2056080598
 GameObject:
   m_ObjectHideFlags: 0
@@ -38628,6 +38763,7 @@ SceneRoots:
   - {fileID: 863070038}
   - {fileID: 1549058523}
   - {fileID: 1909245530115648270}
+  - {fileID: 700394152}
   - {fileID: 447586221}
   - {fileID: 64182534}
   - {fileID: 1943267816}

@@ -14,6 +14,7 @@ public class TargetManager : MonoBehaviour
     public GameObject board5;
     public GameObject decal;
     ProgressTrack finCheck;
+    public SceneLoader sceneLoader;
 
     public UserMenu_Simulation sim;
 
@@ -24,6 +25,7 @@ public class TargetManager : MonoBehaviour
     public FetoscopeLaser laser;
 
     public bool nextLevel = false;
+    public bool endScene = false;
 
     public NearFarInteractor leftHand, rightHand;
 
@@ -245,6 +247,13 @@ public class TargetManager : MonoBehaviour
 
             scoreTxt.text = "Total Score: " + Gamification.instance.score;
             gradeText.text = "Grade: " + Gamification.instance.Grade();
+
+            yield return new WaitUntil(() => nextLevel);
+            if(!endScene)
+            {
+                sceneLoader.HomePage();
+                endScene = true;
+            }
         }
         GameObject[] allObjects = GameObject.FindGameObjectsWithTag("Decal");
         foreach (GameObject obj in allObjects)

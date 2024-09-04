@@ -15,7 +15,7 @@ public class FetoscopeRotation : MonoBehaviour
     //set the starting values for the yaw (side to side) and pitch (up and down) and     
     float yaw = 65f;
     float pitch = 50f;
-  //  float roll = 0.0f;
+    float roll = 0.0f;
 
     //a public variable for the mouse sensitivity
     public float mouseSensitivity;
@@ -42,8 +42,8 @@ public class FetoscopeRotation : MonoBehaviour
             cmode = 0;
         }
 
-        //serial = GameObject.Find("SerialController");
-        //serialScript = serial.GetComponent<SerialController>();
+        serial = GameObject.Find("SerialController");
+        serialScript = serial.GetComponent<SerialController>();
     }
     private void Awake()
     {
@@ -132,7 +132,7 @@ public class FetoscopeRotation : MonoBehaviour
         }
         else if (cmode == 3) // fetoscope controller
         {
-            /*yaw = Mathf.Lerp(yaw, Mathf.Clamp(serialScript.rotX, -35, 85), smoothingFactor * Time.deltaTime);
+            yaw = Mathf.Lerp(yaw, Mathf.Clamp(serialScript.rotX, -35, 85), smoothingFactor * Time.deltaTime);
             pitch = Mathf.Lerp(pitch, Mathf.Clamp(serialScript.rotY, 0, 120), smoothingFactor * Time.deltaTime);
 
             transform.eulerAngles = new Vector3(0.0f, yaw, pitch);
@@ -142,7 +142,7 @@ public class FetoscopeRotation : MonoBehaviour
             {
                 roll = roll % 360;
             }
-            fetoCam.transform.eulerAngles = new Vector3(fetoCam.transform.eulerAngles.x, fetoCam.transform.eulerAngles.y, roll);*/
+            fetoCam.transform.eulerAngles = new Vector3(fetoCam.transform.eulerAngles.x, fetoCam.transform.eulerAngles.y, roll);
         }
 
     }

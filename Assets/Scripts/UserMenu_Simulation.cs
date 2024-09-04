@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; //nedded to access the UI elements
 using UnityEngine.SceneManagement; //needed to switch between scenes
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class UserMenu_Simulation : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class UserMenu_Simulation : MonoBehaviour
     public GameObject escDefault;
     public GameObject escActive;
 
+    public NearFarInteractor leftHand, rightHand;
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +39,14 @@ public class UserMenu_Simulation : MonoBehaviour
         if (SimIsPaused)
         {
             ResumeSim();
+            leftHand.enableFarCasting = false;
+            rightHand.enableFarCasting = false;
         }
         else
         {
             PauseSim();
+            leftHand.enableFarCasting = true;
+            rightHand.enableFarCasting = true;
         }
     }
 

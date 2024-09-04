@@ -41,8 +41,8 @@ public class FetoscopeLaser : MonoBehaviour
 
     private void Start()
     {
-        //serial = GameObject.Find("SerialController");
-       // serialScript = serial.GetComponent<SerialController>();
+        serial = GameObject.Find("SerialController");
+        serialScript = serial.GetComponent<SerialController>();
     }
     private void OnEnable()
     {
@@ -75,7 +75,7 @@ public class FetoscopeLaser : MonoBehaviour
             LaserTone.Stop();
         }
 
-        /*if (serialScript.connected == true)
+        if (serialScript.connected == true)
         {
             if ((serialScript.laserOn == true) && UserMenu_Simulation.SimIsPaused.Equals(false))
             {
@@ -86,7 +86,7 @@ public class FetoscopeLaser : MonoBehaviour
             {
                 isOn = false;
             }
-        }*/
+        }
 
     }
 

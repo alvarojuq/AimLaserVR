@@ -8,7 +8,7 @@
 
 using UnityEngine;
 
-//using System.IO.Ports;
+using System.IO.Ports;
 
 /**
  * This class contains methods that must be run from inside a thread and others
@@ -19,7 +19,7 @@ using UnityEngine;
  * 
  * For method comments, refer to the base class.
  */
-/*public class SerialThread : SerialThreadLines
+public class SerialThread : SerialThreadLines
 {
 
     public SerialThread(string portName,
@@ -29,4 +29,4 @@ using UnityEngine;
         : base(portName, baudRate, delayBeforeReconnecting, maxUnreadMessages)
     {
     }
-}*/
+}

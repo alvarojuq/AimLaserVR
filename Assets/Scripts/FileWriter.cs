@@ -13,7 +13,7 @@ public class FileWriter : UGUIBaseDisplay
     public GameObject rotation;
     public GameObject rollCam;
     private GameObject laser;
-   //private bool handLaser;
+    //private bool handLaser;
     private Vector2 rightGazeTarget;
     private Vector2 leftGazeTarget;
     private string heartRead;
@@ -59,27 +59,27 @@ public class FileWriter : UGUIBaseDisplay
         //eyetracker = GameObject.Find("Eyes");
         //heartrate = GameObject.Find("HRText");
 
-            //This is writing the line of the type, name, damage... etc... (I set these)
+        //This is writing the line of the type, name, damage... etc... (I set these)
         //writer.WriteLine("PlaceHolder_Timestamp");
-            //This loops through everything in the inventory and sets the file to these.
-            writer.WriteLine(
-                Time.realtimeSinceStartup.ToString() +
-                "," + position.transform.position.x.ToString() +
-                "," + position.transform.position.y.ToString() +
-                "," + position.transform.position.z.ToString() +
-                "," + position.transform.rotation.x.ToString() +
-                "," + position.transform.rotation.y.ToString() +
-                "," + position.transform.rotation.z.ToString() +
-                "," + heartRead +
-                "," + rightGazeTarget.x.ToString() +
-                "," + rightGazeTarget.y.ToString() +
-                "," + leftGazeTarget.x.ToString() +
-                "," + leftGazeTarget.y.ToString() //+
-                //"," + finalCheck
-                );
-       //        "," + laserScript.isOn.ToString());
+        //This loops through everything in the inventory and sets the file to these.
+        writer.WriteLine(
+            Time.realtimeSinceStartup.ToString() +
+            "," + position.transform.position.x.ToString() +
+            "," + position.transform.position.y.ToString() +
+            "," + position.transform.position.z.ToString() +
+            "," + position.transform.rotation.x.ToString() +
+            "," + position.transform.rotation.y.ToString() +
+            "," + position.transform.rotation.z.ToString() +
+            "," + heartRead +
+            "," + rightGazeTarget.x.ToString() +
+            "," + rightGazeTarget.y.ToString() +
+            "," + leftGazeTarget.x.ToString() +
+            "," + leftGazeTarget.y.ToString() //+
+                                              //"," + finalCheck
+            );
+        //        "," + laserScript.isOn.ToString());
 
-            writer.Flush();
+        writer.Flush();
 
 
     }

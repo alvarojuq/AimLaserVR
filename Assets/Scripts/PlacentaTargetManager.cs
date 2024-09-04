@@ -12,6 +12,7 @@ public class PlacentaTargetManager : MonoBehaviour
     public ProgressTrack finCheck;
 
     public UserMenu_Simulation sim;
+    public SceneLoader sceneLoader;
 
     [Header("Gameplay Report")]
     public GameObject levelReport;
@@ -20,6 +21,7 @@ public class PlacentaTargetManager : MonoBehaviour
     public FetoscopeLaser laser;
 
     public bool nextLevel = false;
+    public bool endScene = false;
 
     public NearFarInteractor leftHand, rightHand;
 
@@ -66,6 +68,12 @@ public class PlacentaTargetManager : MonoBehaviour
         }
 
         yield return new WaitUntil(() => nextLevel);
+
+        if (!endScene)
+        {
+            sceneLoader.HomePage();
+            endScene = true;
+        }
     }
 
     public void WriteFile()

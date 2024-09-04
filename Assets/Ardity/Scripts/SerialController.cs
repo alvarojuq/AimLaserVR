@@ -1,10 +1,10 @@
 ﻿/**
- * Ardity (Serial Communication for Arduino + Unity)
- * Author: Daniel Wilches <dwilches@gmail.com>
- *
- * This work is released under the Creative Commons Attributions license.
- * https://creativecommons.org/licenses/by/2.0/
- */
+* Ardity (Serial Communication for Arduino + Unity)
+* Author: Daniel Wilches <dwilches@gmail.com>
+*
+* This work is released under the Creative Commons Attributions license.
+* https://creativecommons.org/licenses/by/2.0/
+*/
 
 using UnityEngine;
 using System.Threading;
@@ -24,14 +24,14 @@ using System.Threading;
  * data.
  */
 public class SerialController : MonoBehaviour
-{/*
+{
     // public GameObject rotatorXY;
     public Material mat1;
     public Material mat2;
     public GameObject refObj;
     Vector3 tempPos = new Vector3(0, 0, 0);
     Quaternion tempRot = Quaternion.Euler(0, 0, 0);
-    //float speed = 500;
+    float speed = 500;
     float[] posQueue = new float[6];
     public float rotX = 0;
     public float rotY = 0;
@@ -40,7 +40,7 @@ public class SerialController : MonoBehaviour
     public bool laserOn;
     public bool connected;
 
-    *//*public float XRot
+    /*public float XRot
     {
         get => rotX;
         set
@@ -56,7 +56,7 @@ public class SerialController : MonoBehaviour
         {
             rotY = value;
         }
-    }*//*
+    }*/
 
     [Tooltip("Port name with which the SerialPort object will be created.")]
     public string portName = "COM3";
@@ -167,18 +167,16 @@ public class SerialController : MonoBehaviour
         // Check if the message is plain data or a connect/disconnect event.
         if (ReferenceEquals(message, SERIAL_DEVICE_CONNECTED))
         {
-            messageListener.SendMessage("OnConnectionEvent", true);
             connected = true;
+            messageListener.SendMessage("OnConnectionEvent", true);
         }
         else if (ReferenceEquals(message, SERIAL_DEVICE_DISCONNECTED))
         {
-            messageListener.SendMessage("OnConnectionEvent", false);
             connected = false;
+            messageListener.SendMessage("OnConnectionEvent", false);
         }
         else
-        {
             messageListener.SendMessage("OnMessageArrived", message);
-        }
 
         //Debug.Log("Message arrived: " + message);
         string phrase = message;
@@ -189,7 +187,7 @@ public class SerialController : MonoBehaviour
         for (int x = 0; x < text.Length; x++)
         {
             //words[x] = float.Parse(text[x]);
-            float.TryParse(text[x],out words2);
+            float.TryParse(text[x], out words2);
             words[x] = words2;
         }
 
@@ -205,10 +203,8 @@ public class SerialController : MonoBehaviour
             }
         }
         //posQueue = MovingAverage(posQueue, posQueue.Length);
-
-            rotX = words[1];
-            rotY = words[2];
-
+        rotX = words[1];
+        rotY = words[2];
         localPos = words[3];
         if (words[0] == 1)
         {
@@ -220,83 +216,83 @@ public class SerialController : MonoBehaviour
         }
         rotZ = words[4];
         //laser on/off toggle
-       *//* if (words[0] == 1)
-        {
-            MeshRenderer meshRenderer = rotatorXY.GetComponent<MeshRenderer>();
-            Material oldMaterial = meshRenderer.material;
-            meshRenderer.material = mat1;
-        }
-        else
-        {
-            MeshRenderer meshRenderer = rotatorXY.GetComponent<MeshRenderer>();
-            Material oldMaterial = meshRenderer.material;
-            meshRenderer.material = mat2;
-        }
-
-        //refObj.transform.SetPositionAndRotation(0);
-        Quaternion newRot = Quaternion.Euler(words[1], 0, words[2]);
-        //rotatorXY.transform.Rotate(words[1], words[2], 0); //needs proper scaling to not spaz tf out
-        var step = speed * Time.deltaTime;
-        rotatorXY.transform.rotation = newRot;
-        //rotatorXY.transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, step);    //using x and z here for visibility
-
-        rotatorXY.transform.RotateAround(refObj.transform.position, Vector3.up, words[1] * speed * Time.deltaTime);
-        rotatorXY.transform.RotateAround(refObj.transform.position, Vector3.right, words[2] * speed * Time.deltaTime);
-        rotatorXY.transform.rotation = Quaternion.LookRotation(rotatorXY.transform.position - refObj.transform.position);
-
-        float newPos = posQueue[3] / 10;
-        Vector3 tPos = new Vector3(0, newPos, 0);
-        //lerp from current to tPos
-        rotatorXY.transform.position = tPos;
-
-        /* if (words[1] == "right")
+        /* if (words[0] == 1)
          {
-             rotatorXY.transform.Rotate(float.Parse(words[2]), 0, 0);
-         }
-         else if (words[1] == "left")
-         {
-             rotatorXY.transform.Rotate(float.Parse(words[2]), 0, 0);
-         }
-         else if (words[1] == "up")
-         {
-             rotatorXY.transform.Rotate(0,float.Parse(words[2]), 0);
-         }
-         else if (words[1] == "down")
-         {
-             rotatorXY.transform.Rotate(0, float.Parse(words[2]), 0);
+             MeshRenderer meshRenderer = rotatorXY.GetComponent<MeshRenderer>();
+             Material oldMaterial = meshRenderer.material;
+             meshRenderer.material = mat1;
          }
          else
          {
-             return;
+             MeshRenderer meshRenderer = rotatorXY.GetComponent<MeshRenderer>();
+             Material oldMaterial = meshRenderer.material;
+             meshRenderer.material = mat2;
          }
-        
 
-        if (Input.GetKey("w"))
-        {
-            Vector3 position = rotatorXY.transform.position;
-            position.x++;
-            rotatorXY.transform.position = position;
-        }
-        if (Input.GetKey("s"))
-        {
-            /*Vector3 position = rotatorXY.transform.position;
-            position.x--;
-            rotatorXY.transform.position = position;
-        }
-        
+         //refObj.transform.SetPositionAndRotation(0);
+         Quaternion newRot = Quaternion.Euler(words[1], 0, words[2]);
+         //rotatorXY.transform.Rotate(words[1], words[2], 0); //needs proper scaling to not spaz tf out
+         var step = speed * Time.deltaTime;
+         rotatorXY.transform.rotation = newRot;
+         //rotatorXY.transform.rotation = Quaternion.RotateTowards(transform.rotation, newRot, step);    //using x and z here for visibility
 
-        if (Input.GetMouseButton(0))
-        {
-            MeshRenderer meshRenderer = rotatorXY.GetComponent<MeshRenderer>();
-            Material oldMaterial = meshRenderer.material;
-            meshRenderer.material = mat1;
-        }
-        else
-        {
-            MeshRenderer meshRenderer = rotatorXY.GetComponent<MeshRenderer>();
-            Material oldMaterial = meshRenderer.material;
-            meshRenderer.material = mat2;
-        }*//*
+         rotatorXY.transform.RotateAround(refObj.transform.position, Vector3.up, words[1] * speed * Time.deltaTime);
+         rotatorXY.transform.RotateAround(refObj.transform.position, Vector3.right, words[2] * speed * Time.deltaTime);
+         rotatorXY.transform.rotation = Quaternion.LookRotation(rotatorXY.transform.position - refObj.transform.position);
+
+         float newPos = posQueue[3] / 10;
+         Vector3 tPos = new Vector3(0, newPos, 0);
+         //lerp from current to tPos
+         rotatorXY.transform.position = tPos;
+
+         /* if (words[1] == "right")
+          {
+              rotatorXY.transform.Rotate(float.Parse(words[2]), 0, 0);
+          }
+          else if (words[1] == "left")
+          {
+              rotatorXY.transform.Rotate(float.Parse(words[2]), 0, 0);
+          }
+          else if (words[1] == "up")
+          {
+              rotatorXY.transform.Rotate(0,float.Parse(words[2]), 0);
+          }
+          else if (words[1] == "down")
+          {
+              rotatorXY.transform.Rotate(0, float.Parse(words[2]), 0);
+          }
+          else
+          {
+              return;
+          }
+
+
+         if (Input.GetKey("w"))
+         {
+             Vector3 position = rotatorXY.transform.position;
+             position.x++;
+             rotatorXY.transform.position = position;
+         }
+         if (Input.GetKey("s"))
+         {
+             /*Vector3 position = rotatorXY.transform.position;
+             position.x--;
+             rotatorXY.transform.position = position;
+         }
+
+
+         if (Input.GetMouseButton(0))
+         {
+             MeshRenderer meshRenderer = rotatorXY.GetComponent<MeshRenderer>();
+             Material oldMaterial = meshRenderer.material;
+             meshRenderer.material = mat1;
+         }
+         else
+         {
+             MeshRenderer meshRenderer = rotatorXY.GetComponent<MeshRenderer>();
+             Material oldMaterial = meshRenderer.material;
+             meshRenderer.material = mat2;
+         }*/
     }
 
     // ------------------------------------------------------------------------
@@ -328,5 +324,5 @@ public class SerialController : MonoBehaviour
     {
         this.userDefinedTearDownFunction = userFunction;
     }
-*/
+
 }
