@@ -32,16 +32,6 @@ public class FetoscopeRotation : MonoBehaviour
 
         fetoCam = GameObject.Find("Fetoscope_Camera");
 
-        var xrSettings = XRGeneralSettings.Instance;
-        if (xrSettings != null && xrSettings.Manager != null && xrSettings.Manager.activeLoader != null)
-        {
-            cmode = 2;
-        }
-        else
-        {
-            cmode = 0;
-        }
-
         serial = GameObject.Find("SerialController");
         serialScript = serial.GetComponent<SerialController>();
     }

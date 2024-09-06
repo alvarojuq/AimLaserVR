@@ -116,7 +116,7 @@ public class FetoscopeMovement : MonoBehaviour
 
                 if(Mathf.Abs(inputActions.Joystick.LStickY.ReadValue<float>()) > 0.05f)
                     fetoscopeCC.Move(PS3moveDirection * Time.deltaTime);
-            }
+            }   
             else if (fRot.cmode == 2) // vr controllers
             {
                 PS3moveDirection = (transform.forward * inputActions.Joystick.LStickY.ReadValue<float>() * fetoscopePS3Speed);
@@ -128,13 +128,13 @@ public class FetoscopeMovement : MonoBehaviour
             else if (fRot.cmode == 3) // fetoscope
             {
 
-                if (fetoscopeCC.transform.localPosition.y > serialScript.localPos)
+                if (fetoscopeCC.transform.localPosition.y > (serialScript.localPos * 1.5f))
                 {
                     moveDirection = (transform.forward);
                     // while (fetoscopeCC.transform.localPosition.y > (serialScript.localPos+0.25))
                     fetoscopeCC.Move(moveDirection * Time.deltaTime * fetoscopeDirectionSpeed);
                 }
-                if (fetoscopeCC.transform.localPosition.y < serialScript.localPos)
+                if (fetoscopeCC.transform.localPosition.y < (serialScript.localPos * 1.5f))
                 {
                     moveDirection = (-transform.forward);
                     // while (fetoscopeCC.transform.localPosition.y < (serialScript.localPos-0.25))

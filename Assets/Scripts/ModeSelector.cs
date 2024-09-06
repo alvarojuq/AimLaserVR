@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class ModeSelector : MonoBehaviour
 {
-    private GameObject mixedRealityObjects, targetBoardObjects, simulationObjects, surgeonTable;
-    private FetoscopeRotation fetoscope;
     private int controlType;
 
     public Toggle toggleMR, toggleTB;
@@ -21,12 +19,6 @@ public class ModeSelector : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "TTTS_MainMenu")
         {
-            mixedRealityObjects = GameObject.Find("InteriorObjects");
-            simulationObjects = GameObject.Find("PlacentaTargets");
-            targetBoardObjects = GameObject.Find("BoardManager");
-            surgeonTable = GameObject.Find("surgica_table");
-            fetoscope = GameObject.Find("Fetoscope_Pivot").GetComponent<FetoscopeRotation>();
-
             UpdateObjects();
         }
     }
@@ -53,17 +45,20 @@ public class ModeSelector : MonoBehaviour
     }
     public void UpdateObjects()
     {
-        mixedRealityObjects.SetActive(!boolMR); 
-        if(fetoscope.cmode == 3 && boolMR)
+
+        ObjectHolder.Instance.mixedRealityObjects.SetActive(!boolMR);
+
+        if(controlType == 3 && boolMR)
         {
-            surgeonTable.SetActive(false);
+            ObjectHolder.Instance.surgeonTable.SetActive(false);
         }
 
-        simulationObjects.SetActive(!boolTB); 
-        targetBoardObjects.SetActive(boolTB);
+        ObjectHolder.Instance.simulationObjects.SetActive(!boolTB);
+        ObjectHolder.Instance.targetBoardObjects.SetActive(boolTB);
 
-        fetoscope.CmodeSelect(controlType);
+        ObjectHolder.Instance.fetoscope.CmodeSelect(controlType);
 
         Destroy(gameObject);
+        Destroy(ObjectHolder.Instance.gameObject);
     }
 }
