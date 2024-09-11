@@ -22,6 +22,7 @@ public class PlacentaTargetManager : MonoBehaviour
 
     public bool nextLevel = false;
     public bool endScene = false;
+    public bool visualTargets = false;
 
     public NearFarInteractor leftHand, rightHand;
 
@@ -93,6 +94,7 @@ public class PlacentaTargetManager : MonoBehaviour
         {
             sw.WriteLine("Report Card - Placenta Simulation");
             sw.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            sw.WriteLine("Used visual targets: " + visualTargets);
             sw.WriteLine("");
             sw.WriteLine(accuracyTxt.text);
             sw.WriteLine(timeTxt.text);

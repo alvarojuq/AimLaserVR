@@ -20,4 +20,5 @@ public class ObjectHolder : MonoBehaviour
 
     public GameObject mixedRealityObjects, targetBoardObjects, simulationObjects, surgeonTable;
     public FetoscopeRotation fetoscope;
+    public Material simulationMaterial;
 }

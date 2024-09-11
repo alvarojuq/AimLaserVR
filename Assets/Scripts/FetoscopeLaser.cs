@@ -87,7 +87,6 @@ public class FetoscopeLaser : MonoBehaviour
                 isOn = false;
             }
         }
-
     }
 
     void LaserFire()
@@ -121,7 +120,6 @@ public class FetoscopeLaser : MonoBehaviour
            // temp.GetComponent<DecalProjector>().size = new Vector3(ablationSize, ablationSize, ablationSize);
             temp.GetComponent<DecalProjector>().fadeFactor = ablationSize;
             
-
             //this allows us to instantiate the decal onto the parent of the object hit, ensuring the decals move with any colliders and animations 
             temp.transform.parent = theObjectHit.transform;
             if (theObjectHit.GetComponent<CheckHit>() && theObjectHit.GetComponent<CheckHit>().enabled)
@@ -134,11 +132,15 @@ public class FetoscopeLaser : MonoBehaviour
                 if (PlacentaGamification.instance)
                     PlacentaGamification.instance.Hit();
             }
-            //Debug.Log("Shooting!");
+
+            if (theObjectHit.GetComponent<CheckHit>() && theObjectHit.GetComponent<CheckHit>().done == true && !theObjectHit.GetComponent<CheckHit>().simuation)
+            {
+                Destroy(temp);
+            }
 
             //if the laser hits anything but the placental surface, the damage flash animation appears
 
-            if(theObjectHit.gameObject.tag == "Target")
+            if (theObjectHit.gameObject.tag == "Target")
             {
                 //Debug.Log("Target hit: " + theObjectHit.gameObject.name);
             }

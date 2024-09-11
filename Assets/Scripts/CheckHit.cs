@@ -11,6 +11,7 @@ public class CheckHit : MonoBehaviour
     Renderer rend;
     public int progress = 0;
     public bool done = false;
+    public bool simuation = false;
 
     void Start()
     {
@@ -33,6 +34,15 @@ public class CheckHit : MonoBehaviour
             done = true;
             rend.material = material2;
             this.enabled = false;
+
+            if (!simuation)
+            {
+                foreach (Transform child in transform)
+                {
+                    // Destroy each child GameObject
+                    Destroy(child.gameObject);
+                }
+            }
         }
     }
 }

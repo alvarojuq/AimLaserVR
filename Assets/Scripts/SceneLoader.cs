@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
     //load TTTS Homepage
     public void HomePage()
     {
-       SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 
 

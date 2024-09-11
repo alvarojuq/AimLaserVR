@@ -133,7 +133,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3aa01ff4-3663-4717-9661-5bb1a74dad27"",
+                    ""id"": ""7271194e-f468-42eb-89e2-18f5441433e8"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -177,8 +177,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""32e6fb71-03ab-45b1-99b3-e81d21288aaa"",
-                    ""path"": ""<XRController>{LeftHand}/primaryButton"",
+                    ""id"": ""42c09e5d-f779-40af-a7f2-407dc8031e53"",
+                    ""path"": ""<XRController>{RightHand}/{SecondaryButton}"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -254,8 +254,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3d1a079b-1d62-433f-a2ba-f8875b680761"",
-                    ""path"": ""<XRController>{LeftHand}/{Menu}"",
+                    ""id"": ""32e6fb71-03ab-45b1-99b3-e81d21288aaa"",
+                    ""path"": ""<XRController>{LeftHand}/primaryButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -361,6 +361,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""VerticalMovement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e7e1ab9-0acd-42aa-8f95-5e831cd58370"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VerticalMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": ""1D Axis"",
@@ -596,8 +607,41 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""46515199-2328-47a8-9fcb-467aaf574938"",
+                    ""path"": ""<Joystick>/stick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LStickY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8c39b49-f635-4049-a8e8-a68a14e041aa"",
+                    ""path"": ""<OculusTouchController>{LeftHand}/thumbstick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LStickY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f9dbbdca-c3da-4837-adc1-0a92e32785ea"",
                     ""path"": ""<Gamepad>/leftStick/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LStickX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02ee9de7-ac25-4a4e-9dd2-b922af059ebe"",
+                    ""path"": ""<Joystick>/stick/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
