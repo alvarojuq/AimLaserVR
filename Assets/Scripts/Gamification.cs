@@ -83,24 +83,24 @@ public class Gamification : MonoBehaviour
     public void AddScore()
     {
         // Calculates the score for the round and adds it to the total
-        score += (int)(hitCount + (HitPercentage() * 2) + (100 - TimeSpent()));
+        score += (int)((HitPercentage() * 3));
     }
 
     public string Grade()
     {
-        if (score <= 2599)
+        if (score <= 750)
         {
             return "F";
         }
-        else if (score <= 2799)
+        else if (score <= 950)
         {
             return "D";
         }
-        else if (score <= 2999)
+        else if (score <= 1150)
         {
             return "C";
         }
-        else if (score <= 3149)
+        else if (score <= 1350)
         {
             return "B";
         }

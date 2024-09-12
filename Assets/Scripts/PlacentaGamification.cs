@@ -79,24 +79,24 @@ public class PlacentaGamification : MonoBehaviour
     public void AddScore()
     {
         // Calculates the score for the round and adds it to the total
-        score = ((int)(hitCount + (HitPercentage() * 2) + (100 - TimeSpent()))) * 3;
+        score = ((int)(HitPercentage() * 10));
     }
 
     public string Grade()
     {
-        if (score <= 1499)
+        if (score <= 500)
         {
             return "F";
         }
-        else if (score <= 2199)
+        else if (score <= 700)
         {
             return "D";
         }
-        else if (score <= 2399)
+        else if (score <= 800)
         {
             return "C";
         }
-        else if (score <= 2449)
+        else if (score <= 900)
         {
             return "B";
         }

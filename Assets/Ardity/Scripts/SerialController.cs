@@ -96,6 +96,7 @@ public class SerialController : MonoBehaviour
     // ------------------------------------------------------------------------
     void OnEnable()
     {
+        if(PlayerPrefs.GetString("COMPort") != "")
         portName = PlayerPrefs.GetString("COMPort");
         serialThread = new SerialThreadLines(portName,
                                              baudRate,
