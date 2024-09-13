@@ -18,6 +18,8 @@ public class ModeSelector : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
+        Cursor.lockState = CursorLockMode.None;
+
         if(controlDropdown && portDropdown)
         {
             controlDropdown.value = PlayerPrefs.GetInt("ControlDropdown");
